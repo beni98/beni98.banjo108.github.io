@@ -1,248 +1,239 @@
+<h1>emulatorjs</h1>
 
-<div align = center>
+A javascript emulator for nes, snes, and more!
+The BEST emulator on the internet. No ads and self hosted!
 
-<img width = 300 src = docs/Logo-light.png#gh-dark-mode-only>
-<img width = 300 src = docs/Logo.png#gh-light-mode-only> 
- 
-<br>
-<br>
+<p>demo: <a href=https://ethanaobrien.github.io/emulatorjs/>https://ethanaobrien.github.io/emulatorjs/</a></p>
 
-[![Badge License]][License]
-    
-    
-Self-hosted **Javascript** emulation for various system.
+<p>I have made a google chrome extension using this code <a href=https://github.com/ethanaobrien/emulatorjs-chrome-extension>here</a> - Does not need webserver.</p>
 
-<br>
+<h1>Where did I get this?</h1>
+<p>So I found this website called <a href=https://www.emulatorjs.com/>emulatorjs</a> and I went into inspect and downloaded the resources. I removed the ad server, and made everything work within your own domain.</p>
+<p>EMULATOR JS PEOPLE - I looked everywhere and found no terms of service on your site.</p>
 
-[![Button Website]][Website] 
-[![Button Usage]][Usage]<br>
-[![Button Configurator]][Configurator]<br>
-[![Button Demo]][Demo] 
-[![Button Legacy]][Legacy]
-    
-[![Button Contributors]][Contributors]   
- 
-Join our Discord server:
-
-[![Join our Discord server!](https://invidget.switchblade.xyz/6akryGkETU)](https://discord.gg/6akryGkETU)
-
-Or the Matrix server (#emulatorjs:matrix.emulatorjs.org):
-
-<a href="https://matrix.to/#/#emulatorjs:matrix.emulatorjs.org" rel="noopener" target="_blank"><img src="https://matrix.to/img/matrix-badge.svg" alt="Chat on Matrix"></a>
-
-</div>
-
-<br>
-
-> [!NOTE]  
-> **As of EmulatorJS version 4.0, this project is no longer a reverse-engineered version of the emulatorjs.com project. It is now a complete re-write.**
-
-> [!WARNING]  
-> As of version 4.0.9 cores and minified files are no longer included in the repository. You will need to get them separately. You can get the from [releases](https://github.com/EmulatorJS/EmulatorJS/releases) or the * new CDN (see [this](#CDN) for more info). There is also a new version system that we will be using. (read [here](#Versioning) for more info).
->
-> The history of the project has been rewritten and force pushed. You will likely need to redo any active commits you have. Sorry for the inconvenience.
-
-> [!TIP]
-> Cloning the repository is no longer recommended for production use. You should use [releases](https://github.com/EmulatorJS/EmulatorJS/releases) or the [CDN](https://cdn.emulatorjs.org/) instead.
-
-<br>
-
-### Ads
-
-*This project has no ads.* <br>
-*Although, the demo page currently has an ad to help fund this project.* <br>
-*Ads on the demo page may come and go depending on how many people are* <br>
-*funding this project.* <br>
-
-*You can help fund this project on* ***[patreon]***
-
-<br>
+<p>The emulator is not illegal - the rom is - I am not responsible for what people decide to do with this software.</p>
 
 
-### Issues
+<h1>IF YOU WOULD LIKE ANOTHER SYSTEM</h1>
+<p>Check if the system is on <a href=https://www.emulatorjs.com/>emulatorjs.com</a>. If it is then open an issue asking for the system you would like to emulate.</p>
 
-*If something doesn't work, please consider opening an* ***[Issue]*** <br>
-*with as many details as possible, as well as the console log.*
+<h1>HOW TO</h1>
 
-<br>
+Download this repository (Code > Download as zip) then Extract the contents
 
-### Versioning
-There are 3 different version name that you need to be aware of:
-1. **stable** - This will be the most stable version of the emulator both code and cores will be tested before release. It will be updated every time a new version is released on GitHub. This is the default version on the Demo.
-2. **latest** - This will contain the latest code but use the stable cores. This will be updated every time the *main* branch is updated.
-3. **nightly** - This will contain the latest code and the latest cores. The cores will be updated every day, so this is consiterd alpha.
+<p>MUST HOST ON WEB SERVER!! (I use <a href=https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb?hl=en>Web Server for Chrome</a> but you are welcome to use what you like)</p>
 
-### CDN
-There is a new CDN that you can use to get any version of the emulator. The cdn is `https://cdn.emulatorjs.org/`. You can use this to get the stable, latest, nightly and any other main version by setting your `EJS_pathtodata` to `https://cdn.emulatorjs.org/<version>/data/`.
+All of the paths are relative, all files MUST stay where they are
 
-### Extensions
+The html that has the emulator embedded in it MUST be in the same directory as all of the files.
 
- **[GameLibrary]**
+If you have questions, ask me and I will clarify (use the issues tab)
 
-   *A library overview for your **ROM** folder.*
+Just so you know - You DO NOT NEED the bios for most games / systems, even if it is listed.
 
-<br>
+Roms can be zipped into .zip archive or .7z archive
 
-### Development:
+<h1>Supported systems!</h1>
+<h2>NES / Famicom</h2>
 
-*Run a local server with:* 
+Code example
+
 ```
-npm i
-npm start
+<div style="width:640px;height:480px;max-width:100%">
+  <div id="game"></div>
+</div>
+<script type="text/javascript">
+    EJS_player = '#game';
+    EJS_biosUrl = ''; // Url to Famicom Disk System bios
+    EJS_gameUrl = ''; // Url to Game rom
+    EJS_core = 'nes';
+    EJS_lightgun = false; // Lightgun
+    EJS_pathtodata = 'data/'; //path to all of the wasm and js files. MUST all be in the same directory!! Must end with /
+</script>
+<script src="data/loader.js"></script>
+```
+Your rom MUST have one of the following extensions
+
+```
+.fds
+.nes
+.unif
+.unf
+```
+You can find the famicon BIOS by looking up the md5 sum which is `ca30b50f880eb660a320674ed365ef7a`
+<br><br>
+<h2>SNES</h2>
+
+Code Example
+
+```
+<div style="width:640px;height:480px;max-width:100%">
+        <div id="game"></div>
+      </div>
+<script type="text/javascript">
+    EJS_player = '#game';
+    EJS_gameUrl = ''; // Url to Game rom
+    EJS_core = 'snes';
+    EJS_mouse = false; // SNES Mouse
+    EJS_multitap = false; // SNES Multitap
+    EJS_pathtodata = 'data/'; //path to all of the wasm and js files. MUST all be in the same directory!! Must end with /
+</script>
+<script src="data/loader.js"></script>
+```
+Your rom MUST have one of the following extensions
+
+```
+.smc
+.fig
+.sfc
+.gd3
+.gd7
+.dx2
+.bsx
+.swc
+```
+There is no bios for this system
+<br><br>
+<h2>Nintendo 64</h2>
+
+Code Example
+
+```
+<div style="width:640px;height:480px;max-width:100%">
+        <div id="game"></div>
+      </div>
+<script type="text/javascript">
+    EJS_player = '#game';
+    EJS_gameUrl = ''; // Url to Game rom
+    EJS_core = 'n64';
+    EJS_pathtodata = 'data/'; //path to all of the wasm and js files. MUST all be in the same directory!! Must end with /
+</script>
+<script src="data/loader.js"></script>
+```
+I do not know the file extension limits for this system. I know the `.z64` roms work.
+
+There is no bios for this system
+<br><br>
+<h2>Nintendo Game Boy</h2>
+
+Code example
+
+```
+<div style="width:640px;height:480px;max-width:100%">
+        <div id="game"></div>
+      </div>
+<script type="text/javascript">
+    EJS_player = '#game';
+    EJS_biosUrl = '';
+    EJS_gameUrl = ''; // Url to Game rom
+    EJS_core = 'gb';
+    EJS_pathtodata = 'data/'; //path to all of the wasm and js files. MUST all be in the same directory!! Must end with /
+</script>
+<script src="data/loader.js"></script>
 ```
 
-<br>
+I do not know the file extension limits for this system.
 
-**>> When reporting bugs, please specify that you are using the old version**
+You can find the Game Boy BIOS by looking up the md5 sum which is `32fbbd84168d3482956eb3c5051637f5`
+You can find the Game Boy Color BIOS by looking up the md5 sum which is `dbfce9db9deaa2567f6a84fde55f9680`
+<br><br>
+<h2>Nintendo Game Boy Advance</h2>
 
-<br>
-<br>
-<br>
+Code example
 
-<h1 align = center>Supported Systems</h1>
+```
+<div style="width:640px;height:480px;max-width:100%">
+        <div id="game"></div>
+      </div>
+<script type="text/javascript">
+    EJS_player = '#game';
+    EJS_biosUrl = '';
+    EJS_gameUrl = ''; // Url to Game rom
+    EJS_core = 'gba';
+    EJS_pathtodata = 'data/'; //path to all of the wasm and js files. MUST all be in the same directory!! Must end with /
+</script>
+<script src="data/loader.js"></script>
+```
 
-<br>
+I do not know the file extension limits for this system.
 
-<div align = center>
+You can find the Game Boy Advance BIOS by looking up the md5 sum which is `	a860e8c0b6d573d191e4ec7db1b1e4f6`
+You can find the Game Boy BIOS by looking up the md5 sum which is `	32fbbd84168d3482956eb3c5051637f5`
+You can find the Game Boy Color BIOS by looking up the md5 sum which is `dbfce9db9deaa2567f6a84fde55f9680`
+You can find the Super Game Boy BIOS by looking up the md5 sum which is `d574d4f9c12f305074798f54c091a8b4`
+<br><br>
+<h2>Nintendo DS</h2>
 
-### Nintendo
+Code example
 
-**[Game Boy Advance][Nintendo Game Boy Advance]**   | 
-**[Famicom / NES][NES / Famicom]**   | 
-**[Virtual Boy][Virtual Boy]**
-    
-**[Game Boy][Nintendo Game Boy]**   | 
-**[SNES]**   | 
-**[DS][Nintendo DS]**   | 
-**[64][Nintendo 64]**
+```
+<div style="width:640px;height:480px;max-width:100%">
+        <div id="game"></div>
+      </div>
+<script type="text/javascript">
+    EJS_player = '#game';
+    EJS_gameUrl = ''; // Url to Game rom
+    EJS_core = 'nds';
+    EJS_pathtodata = 'data/'; //path to all of the wasm and js files. MUST all be in the same directory!! Must end with /
+</script>
+<script src="data/loader.js"></script>
+```
 
-<br>
-<br>
+I do not know the file extension limits for this system.
 
-### Sega
+There is no bios for this system
+<br><br>
+<h2>PlayStation</h2>
 
-**[Master System][Sega Master System]**   | 
-**[Mega Drive][Sega Mega Drive]**   | 
-**[Game Gear][Sega Game Gear]**
-    
-**[Saturn][Sega Saturn]**   | 
-**[32X][Sega 32X]**   | 
-**[CD][Sega CD]**
-    
-<br>
-<br>
+Code example
 
-### Atari
+```
+<div style="width:640px;height:480px;max-width:100%">
+        <div id="game"></div>
+      </div>
+<script type="text/javascript">
+    EJS_player = '#game';
+    EJS_biosUrl = ''; // Url to Bios file
+    EJS_gameUrl = ''; // Url to Game rom
+    EJS_core = 'psx';
+    EJS_pathtodata = 'data/'; //path to all of the wasm and js files. MUST all be in the same directory!! Must end with /
+</script>
+<script src="data/loader.js"></script>
+```
+Your rom MUST have one of the following extensions
 
-**[2600][Atari 2600]**   | 
-**[5200][Atari 5200]**   | 
-**[7800][Atari 7800]**   | 
-**[Lynx][Atari Lynx]**   | 
-**[Jaguar][Atari Jaguar]**
+```
+.bin
+.cue
+.img
+.mdf
+.pbp
+.toc
+.cbn
+.m3u
+.ccd
+```
+You can find the PlayStation 1 JP BIOS by looking up the md5 sum which is `8dd7d5296a650fac7319bce665a6a53c`
+You can find the PlayStation 1 US BIOS by looking up the md5 sum which is `490f666e1afb15b7362b406ed1cea246`
+You can find the PlayStation 1 EU BIOS by looking up the md5 sum which is `32736f17079d0b2b7024407c39bd3050`
+<br><br>
+<h2>Virtual Boy</h2>
 
-<br>
-<br>
+Code example
 
-### Commodore
+```
+<div style="width:640px;height:480px;max-width:100%">
+        <div id="game"></div>
+      </div>
+<script type="text/javascript">
+    EJS_player = '#game';
+    EJS_gameUrl = ''; // Url to Game rom
+    EJS_core = 'vb';
+    EJS_pathtodata = 'data/'; //path to all of the wasm and js files. MUST all be in the same directory!! Must end with /
+</script>
+<script src="data/loader.js"></script>
+```
 
-**[Commodore 64]** |
-**[Commodore 128]** |
-**[Commodore Amiga]**
+I do not know the file extension limits for this system.
 
-**[Commodore PET]** |
-**[Commodore Plus/4]** |
-**[Commodore VIC-20]**
-
-<br>
-<br>
-
-### Other
-    
-**[PlayStation]**   | 
-**[Arcade]**   | 
-**[3DO]**
-
-**[MAME 2003]** |
-**[ColecoVision]**
-    
-</div>
-
-<br>
-
-<!-- 🎮 🎮 🎮 🎮 🎮 🎮 🎮 🎮 🎮 🎮 🎮 🎮 🎮 🎮 🎮 🎮 🎮 🎮 🎮 🎮 🎮 🎮 🎮 --->
-
-[License]: LICENSE
-[Issue]: https://github.com/ethanaobrien/emulatorjs/issues
-[patreon]: https://patreon.com/EmulatorJS
-
-
-<!-- 🎮 🎮 🎮 🎮 🎮 🎮 🎮 🎮 🎮   Extensions   🎮 🎮 🎮 🎮 🎮 🎮 🎮 🎮 🎮 --->
-
-[GameLibrary]: https://github.com/Ramaerel/emulatorjs-GameLibrary
-
-
-<!-- 🎮 🎮 🎮 🎮 🎮 🎮 🎮 🎮 🎮   Quicklinks   🎮 🎮 🎮 🎮 🎮 🎮 🎮 🎮 🎮 --->
-
-[Configurator]: https://emulatorjs.org/editor
-[Contributors]: docs/Contributors.md
-[Website]: https://emulatorjs.org/
-[Legacy]: https://coldcast.org/games/1/Super-Mario-Bros
-[Usage]: https://emulatorjs.org/docs/
-[Demo]: https://demo.emulatorjs.org/
-
-
-<!-- 🎮 🎮 🎮 🎮 🎮 🎮 🎮 🎮 🎮 🎮  Systems  🎮 🎮 🎮 🎮 🎮 🎮 🎮 🎮 🎮 🎮 -->
-
-[Nintendo Game Boy Advance]: https://emulatorjs.org/docs/systems/nintendo-game-boy-advance
-[Nintendo Game Boy]: https://emulatorjs.org/docs/systems/nintendo-game-boy
-[Nintendo 64]: https://emulatorjs.org/docs/systems/nintendo-64
-[Nintendo DS]: https://emulatorjs.org/docs/systems/nintendo-ds
-
-[Sega Master System]: https://emulatorjs.org/docs/systems/sega-master-system
-[Sega Mega Drive]: https://emulatorjs.org/docs/systems/sega-mega-drive
-[Sega Game Gear]: https://emulatorjs.org/docs/systems/sega-game-gear
-[Sega Saturn]: https://emulatorjs.org/docs/systems/sega-saturn
-[Sega 32X]: https://emulatorjs.org/docs/systems/sega-32x
-[Sega CD]: https://emulatorjs.org/docs/systems/sega-cd
-
-[Atari Jaguar]: https://emulatorjs.org/docs/systems/atari-jaguar
-[Atari Lynx]: https://emulatorjs.org/docs/systems/atari-lynx
-[Atari 7800]: https://emulatorjs.org/docs/systems/atari-7800
-[Atari 2600]: https://emulatorjs.org/docs/systems/atari-2600
-[Atari 5200]: https://emulatorjs.org/docs/systems/atari-5200
-
-[NES / Famicom]: https://emulatorjs.org/docs/systems/nes-famicom
-[SNES]: https://emulatorjs.org/docs/systems/snes
-
-<!--
-[TurboGrafs-16 / PC Engine]: https://emulatorjs.org/systems/TurboGrafx-16
-[MSX]: https://emulatorjs.org/systems/MSX
-[WanderSwan / Color]: https://emulatorjs.org/systems/WonderSwan
-[Neo Geo Poket]: https://emulatorjs.org/systems/Neo%20Geo%20Pocket
---->
-[PlayStation]: https://emulatorjs.org/docs/systems/playstation
-[Virtual Boy]: https://emulatorjs.org/docs/systems/virtual-boy
-[Arcade]: https://emulatorjs.org/docs/systems/arcade
-[3DO]: https://emulatorjs.org/docs/systems/3do
-[MAME 2003]: https://emulatorjs.org/docs/systems/mame-2003
-[ColecoVision]: https://emulatorjs.org/docs/systems/colecovision
-
-[Commodore 64]: https://emulatorjs.org/docs/systems/commodore-64
-[Commodore 128]: https://emulatorjs.org/docs/systems/commodore-128
-[Commodore Amiga]: https://emulatorjs.org/docs/systems/commodore-amiga
-[Commodore PET]: https://emulatorjs.org/docs/systems/commodore-pet
-[Commodore Plus/4]: https://emulatorjs.org/docs/systems/commodore-plus4
-[Commodore VIC-20]: https://emulatorjs.org/docs/systems/commodore-vic20
-
-
-<!-- 🎮 🎮 🎮 🎮 🎮 🎮 🎮 🎮 🎮 🎮  Badges  🎮 🎮 🎮 🎮 🎮 🎮 🎮 🎮 🎮 🎮 --->
-
-[Badge License]: https://img.shields.io/badge/License-GPLv3-blue.svg?style=for-the-badge
-
-[Button Configurator]: https://img.shields.io/badge/Configurator-992cb3?style=for-the-badge
-[Button Contributors]: https://img.shields.io/badge/Contributors-54b7dd?style=for-the-badge
-[Button Website]: https://img.shields.io/badge/Website-736e9b?style=for-the-badge
-[Button Legacy]: https://img.shields.io/badge/Legacy-ab910b?style=for-the-badge
-[Button Usage]: https://img.shields.io/badge/Usage-2478b5?style=for-the-badge
-[Button Demo]: https://img.shields.io/badge/Demo-528116?style=for-the-badge
-[Button Beta]: https://img.shields.io/badge/Beta-bb044f?style=for-the-badge
+There is no bios for this system
