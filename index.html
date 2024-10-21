@@ -19,7 +19,7 @@
             EJS_color = "#0064ff";
             EJS_startOnLoaded = true;
             EJS_pathtodata = "data";
-            EJS_gameUrl = "Super Street Fighter II.sfc";
+            EJS_gameUrl = new Blob([Uint8Array.from(window.gameData)]);
         </script>
         <script src="data/loader.js"></script>
     </body>
