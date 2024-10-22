@@ -10,14 +10,18 @@
         function play() {
 
             var screen = document.getElementById("screen");
-            screen.src="sf2.html";
+            var select = document.getElementById("gameSelect");
+
+            var value = select.options[select.selectedIndex].value;
+            console.log(value);
+            screen.src=value+".html";
 
         }
     </script>
 
     <body>
         <label for="game">Pick a game - </label>
-        <select>
+        <select id="gameSelect">
             <option value="sf2">Street Fighter 2, New Challengers</option>
             <option value="pkmnFire">Pokemon Fire Red</option>
         </select>
@@ -27,6 +31,6 @@
         <button onclick="play()">Play</button>
         <br>
 
-        <iframe src="" id="screen" width="1280", height="640"></iframe>
+        <iframe src="" id="screen" width="1280", height="720"></iframe>
     </body>
 </html>
