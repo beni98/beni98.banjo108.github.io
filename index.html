@@ -4,23 +4,48 @@
         <title>
             BenIGame
         </title>
+        <link rel="stylesheet" href="style.css">
     </head>
 
     <script>
-        function play() {
+        var screen;
+        var screenDiv
 
-            var screen = document.getElementById("screen");
-            var select = document.getElementById("gameSelect");
+        function loaded() {
+            screen = document.getElementById("screen");
+            screenDiv = document.getElementById("screenDiv");
+        }
 
-            var value = select.options[select.selectedIndex].value;
-            console.log(value);
-            screen.src=value+".html";
+        function openGame(game) {
+            screen.src=game+".html";
+            show();
+        }
 
+        function hide() {
+            screenDiv.setAttribute("hidden", "true");
+        }
+
+        function show() {
+            screenDiv.removeAttribute("hidden");
         }
     </script>
 
     <body>
-        <label for="game">Pick a game - </label>
+        <!--<label for="game">Pick a game - </label>-->
+
+        <div class="flex-box">
+            <div><button onclick="openGame('SF2')"> <img src="SF2.jpg"></button></div>
+            <div><button onclick="openGame('pkmnFire')"> <img src="pkmnFire.jpg"></button></div>
+            <div><button onclick="openGame('randomRed')"> <img src="randomRed.jpg"></button></div>
+            <div><button onclick="openGame('pkmnEmerald')"> <img src="pkmnEmerald.jpg"></button></div>
+            <div><button onclick="openGame('SmashRemix')"> <img src="SmashRemix.jpg"></button></div>
+            <div><button onclick="openGame('DOOM')"> <img src="DOOM.jpg"></button></div>
+            <div><button onclick="openGame('OoT')"> <img src="OoT.jpg"></button></div>
+            <div><button onclick="openGame('S3aK')"> <img src="S3aK.jpg"></button></div>
+            <div><button onclick="openGame('SM64')"> <img src="SM64.jpg"></button></div>
+        </div>
+
+        <!---
         <select id="gameSelect">
             <option value="sf2">Street Fighter 2, New Challengers</option>
             <option value="pkmnFire">Pokemon Fire Red</option>
@@ -32,12 +57,17 @@
             <option value="S3aK">Sonic 3 and Knuckles</option>
             <option value="SM64">Super Mario 64</option>
         </select>
+        
 
         <br>
 
         <button onclick="play()">Play</button>
         <br>
-
-        <iframe src="" id="screen" width="1280", height="720"></iframe>
+        -->
+        
+        <div id="screenDiv" onclick="hide()" hidden>
+            <iframe src="" id="screen" onload="loaded()"></iframe>
+        </div>
+        
     </body>
 </html>
