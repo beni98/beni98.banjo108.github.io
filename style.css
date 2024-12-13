@@ -2,6 +2,16 @@ body {
     background-color: rgb(12,16,24);
 }
 
+@keyframes size {
+    from {height: 32vh;}
+    to {height:45vh;}
+}
+
+@keyframes sizeDown {
+    from {height: 45vh;}
+    to {height:32vh;}
+}
+
 img {
     margin-right: 1%;
     margin-left: 1%;
@@ -13,7 +23,10 @@ img {
 }
 
 img:hover {
-    height:45vh;
+    animation-name: size;
+    animation-duration: .2s;
+    animation-delay: .25s;
+    animation-fill-mode: forwards;
 }
 
 button {
