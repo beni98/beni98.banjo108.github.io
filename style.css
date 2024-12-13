@@ -9,11 +9,11 @@ img {
 
     padding-right: 5%;
     padding-bottom: 5%;
-    height:440px;
+    height:32vh;
 }
 
 img:hover {
-    height:520px;
+    height:45vh;
 }
 
 button {
