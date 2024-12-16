@@ -59,6 +59,5 @@ iframe {
 .flex-box {
     display:flex;
     flex-wrap:wrap;
-    justify-content: center;
-    justify-content: space-around;
+    justify-content: flex-start;
 }
