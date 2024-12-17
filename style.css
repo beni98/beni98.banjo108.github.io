@@ -13,13 +13,19 @@ body {
 }
 
 img {
+    height:32vh;
+    border-style:solid;
+    border-color:whitesmoke;
+    border-width:2px;
+}
+
+.gameButton {
     margin-right: 2vw;
     margin-left: 2vh;
     margin-top: 2vw;
 
     padding-right: 2vw;
     padding-bottom: 2vh;
-    height:32vh;
 }
 
 img:hover {
