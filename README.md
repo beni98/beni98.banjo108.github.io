@@ -1,1 +1,1 @@
-I just wanna play games instead of doing my math work
+I just wanna play games instead of doing my math work.
