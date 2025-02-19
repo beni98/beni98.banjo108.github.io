@@ -18,15 +18,16 @@
 
         function openGame(game) {
             screen.src=game+".html";
-            show();
+            show(game);
         }
 
         function hide() {
             screenDiv.setAttribute("hidden", "true");
         }
 
-        function show() {
-            screenDiv.removeAttribute("hidden");
+        function show(game) {
+            window.open(game+".html");
+            //screenDiv.removeAttribute("hidden");
         }
     </script>
 
