@@ -16,7 +16,7 @@ img {
     height:32vh;
     border-style:solid;
     border-color:whitesmoke;
-    border-width:2px;
+    border-width:0px;
 }
 
 .gameButton {
