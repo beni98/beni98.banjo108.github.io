@@ -8,25 +8,8 @@
     </head>
 
     <script>
-        var screen;
-        var screenDiv;
-
-        function loaded() {
-            screen = document.getElementById("screen");
-            screenDiv = document.getElementById("screenDiv");
-        }
-
-        function openGame(game) {
-            screen.src=game+".html";
-            show();
-        }
-        
-        function hide() {
-            screenDiv.setAttribute("hidden", "true");
-        }
-
-        function show() {
-            screenDiv.removeAttribute("hidden");
+function openGame(game) {
+            window.open(game+".html");
         }
     </script>
 
