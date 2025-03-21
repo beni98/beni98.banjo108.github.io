@@ -3,17 +3,17 @@ body {
 }
 
 @keyframes size {
-    from {height: 32vh;}
-    to {height:45vh;}
+    from {height: 28vh;}
+    to {height:38vh;}
 }
 
 @keyframes sizeDown {
-    from {height: 45vh;}
-    to {height:32vh;}
+    from {height: 38vh;}
+    to {height:28vh;}
 }
 
 img {
-    height:32vh;
+    height:28vh;
     border-style:solid;
     border-color:whitesmoke;
     border-width:0px;

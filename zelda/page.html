@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            BenIGame
+        </title>
+        <link rel="stylesheet" href="../style.css">
+    </head>
+
+    <script>
+        var screen;
+        var screenDiv;
+
+        function loaded() {
+            screen = document.getElementById("screen");
+            screenDiv = document.getElementById("screenDiv");
+        }
+
+        function openGame(game) {
+            screen.src=game+".html";
+            show();
+        }
+        
+        function hide() {
+            screenDiv.setAttribute("hidden", "true");
+        }
+
+        function show() {
+            screenDiv.removeAttribute("hidden");
+        }
+    </script>
+
+    <body>
+        <div class="gameButton"><button onclick="openGame('OoT')"> <img src="../images/OoT.jpg"></button></div>
+        <div class="gameButton"><button onclick="openGame('minishCap')"> <img src="../images/minishCap.jpg"></button></div>
+    </body>
+</html>

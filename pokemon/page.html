@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            BenIGame
+        </title>
+        <link rel="stylesheet" href="../style.css">
+    </head>
+
+    <script>
+        var screen;
+        var screenDiv;
+
+        function loaded() {
+            screen = document.getElementById("screen");
+            screenDiv = document.getElementById("screenDiv");
+        }
+
+        function openGame(game) {
+            screen.src=game+".html";
+            show();
+        }
+        
+        function hide() {
+            screenDiv.setAttribute("hidden", "true");
+        }
+
+        function show() {
+            screenDiv.removeAttribute("hidden");
+        }
+    </script>
+
+    <body>
+        <div class="gameButton"><button onclick="openGame('pkmnStadium')"> <img src="../images/pkmnStadium.jpg"></button></div>
+        <div class="gameButton"><button onclick="openGame('pkmnBlue')"> <img src="../images/pkmnBlue.jpg"></button></div>
+        <div class="gameButton"><button onclick="openGame('pkmnFire')"> <img src="../images/pkmnFire.jpg"></button></div>
+        <div class="gameButton"><button onclick="openGame('randomRed')"> <img src="../images/randomRed.jpg"></button></div>
+        <div class="gameButton"><button onclick="openGame('pkmnCrystal')"> <img src="../images/pkmnCrystal.jpg"></button></div>
+        <div class="gameButton"><button onclick="openGame('pkmnEmerald')"> <img src="../images/pkmnEmerald.jpg"></button></div>
+        <div class="gameButton"><button onclick="openGame('pkmnDiamond')"> <img src="../images/pkmnDiamond.jpg"></button></div>
+        <div class="gameButton"><button onclick="openGame('pkmnWhite')"> <img src="../images/pkmnWhite.jpg"></button></div>
+    </body>
+</html>

@@ -8,16 +8,14 @@
     </head>
 
     <script>
-        var screen;
-        var screenDiv;
-
-        function loaded() {
-            screen = document.getElementById("screen");
-            screenDiv = document.getElementById("screenDiv");
+        function openCata(cata) {
+            url = new URL(window.location.href);
+            domain = url.hostname;
+            window.location.href = domain + "/" + cata + "/page.html";
         }
 
         function openGame(game) {
-            screen.src=game+".html";
+            //screen.src=game+".html";
             show(game);
         }
 
@@ -35,27 +33,19 @@
         <!--<label for="game">Pick a game - </label>-->
 
         <div class="flex-box">
-            <div class="gameButton"><button onclick="openGame('SF2')"> <img src="images/SF2.jpg"></button></div>
-            <div class="gameButton"><button onclick="openGame('SFA2')"> <img src="images/SFA2.jpg"></button></div>
+            <div class="gameButton"><button onclick="openCata('mario')"> <img src="images/mario.jpg"></button></div>
+            <div class="gameButton"><button onclick="openCata('pokemon')"> <img src="images/pokemon.jpg"></button></div>
+            <div class="gameButton"><button onclick="openCata('zelda')"> <img src="images/zelda.jpg"></button></div>
+            <div class="gameButton"><button onclick="openCata('street fighter')"> <img src="images/street fighter.jpg"></button></div>
             <div class="gameButton"><button onclick="openGame('tetris')"> <img src="images/tetris.jpg"></button></div>
-            <div class="gameButton"><button onclick="openGame('minishCap')"> <img src="images/minishCap.jpg"></button></div>
-            <div class="gameButton"><button onclick="openGame('pkmnFire')"> <img src="images/pkmnFire.jpg"></button></div>
-            <div class="gameButton"><button onclick="openGame('randomRed')"> <img src="images/randomRed.jpg"></button></div>
-            <div class="gameButton"><button onclick="openGame('pkmnEmerald')"> <img src="images/pkmnEmerald.jpg"></button></div>
-            <div class="gameButton"><button onclick="openGame('pkmnDiamond')"> <img src="images/pkmnDiamond.jpg"></button></div>
-            <div class="gameButton"><button onclick="openGame('pkmnWhite')"> <img src="images/pkmnWhite.jpg"></button></div>
+            <div class="gameButton"><button onclick="openGame('pacman')"> <img src="images/pacman.jpg"></button></div>
+            
             <div class="gameButton"><button onclick="openGame('SmashRemix')"> <img src="images/SmashRemix.jpg"></button></div>
             <div class="gameButton"><button onclick="openGame('DOOM')"> <img src="images/DOOM.jpg"></button></div>
-            <div class="gameButton"><button onclick="openGame('OoT')"> <img src="images/OoT.jpg"></button></div>
+            
             <div class="gameButton"><button onclick="openGame('S3aK')"> <img src="images/S3aK.jpg"></button></div>
-            <div class="gameButton"><button onclick="openGame('SM64')"> <img src="images/SM64.jpg"></button></div>
-            <div class="gameButton"><button onclick="openGame('SMB1')"> <img src="images/SMB1.jpg"></button></div>
-            <div class="gameButton"><button onclick="openGame('paperMario')"> <img src="images/paperMario.jpg"></button></div>
-            <div class="gameButton"><button onclick="openGame('superSaga')"> <img src="images/superSaga.jpg"></button></div>
             <div class="gameButton"><button onclick="openGame('meanBean')"> <img src="images/meanBean.jpg"></button></div>
-            <div class="gameButton"><button onclick="openGame('pkmnStadium')"> <img src="images/pkmnStadium.jpg"></button></div>
             <div class="gameButton"><button onclick="openGame('fireEmblem')"> <img src="images/fireEmblem.jpg"></button></div>
-            <div class="gameButton"><button onclick="openGame('pacman')"> <img src="images/pacman.jpg"></button></div>
             <div class="gameButton"><button onclick="openGame('HTML-Games/blockBlast')"> <img src="images/blockBlast.jpg"></button></div>
             <div class="gameButton"><button onclick="openGame('HTML-Games/Tron')"> <img src="images/Tron.jpg"></button></div>
             <div class="gameButton"><button onclick="openGame('HTML-Games/2048')"> <img src="images/2048.jpg"></button></div>
