@@ -1,8 +1,9 @@
-window.addEventListener("beforeunload", function (e) {
+window.addEventListener("clipboard", function (e) {
     var confirmationMessage = 'It looks like you have been editing something. '
                             + 'If you leave before saving, your changes will be lost.';
 
-    (e || window.event).returnValue = confirmationMessage; //Gecko + IE
-    console.log(confirmationMessage);
+    console.log("AAA");
     return confirmationMessage; //Gecko + Webkit, Safari, Chrome etc.
 });
+
+console.log("a")
