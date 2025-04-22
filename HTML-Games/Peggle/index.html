@@ -1,0 +1,2432 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsv7T4Oa1-dCfbJmsQsQSnhR1dMwYokBALicc2V4KNgmhze995rAAy3zm_PPwyFUtvII0&usqp=CAU"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.18.0/matter.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.37/Tone.js"></script>
+    <audio id="myAudio">
+      <source
+        src="/Sounds/Download_-_2024-03-11T192703.280.mp3"
+        type="audio/mpeg"
+      />
+    </audio>
+    <audio id="load">
+      <source src="/Sounds/pegging load.mp3" type="audio/mpeg" muted="muted" />
+    </audio>
+    <audio id="shoot">
+      <source src="/Sounds/peggle shoot.mp3" type="audio/mpeg" muted="muted" />
+    </audio>
+    <audio id="egg">
+      <source src="/Sounds/easteregg.mp3" type="audio/mpeg" muted="muted" />
+    </audio>
+    <link rel="stylesheet" href="StyleSheet/style.css" />
+    <title>Pegging Ultimate Deluxe Mega Ultra HD Edition</title>
+  </head>
+
+  <body>
+    <div id="titleContainer">
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const titleText =
+            "Peggle Ultimate Deluxe Mega Ultra HD Celebration Founders Edition";
+          const titleContainer = document.getElementById("titleContainer");
+
+          titleContainer.innerHTML = "";
+
+          let rub = [];
+
+          titleText.split("").forEach((letter, index) => {
+            const span = document.createElement("span");
+            span.innerText = letter;
+            span.className = "letter";
+            titleContainer.appendChild(span);
+
+            setTimeout(() => {
+              span.style.opacity = "1";
+            }, 200 * index);
+
+            span.addEventListener("click", function () {
+              rub.push(letter);
+
+              if (rub.slice(-6).join("").toLowerCase() === "rubber") {
+                easterEgg();
+
+                rub = [];
+              }
+              changeColor(this);
+            });
+
+            document.addEventListener("keydown", function (event) {
+              const keyPressed = event.key;
+              if (keyPressed === letter) {
+              }
+            });
+          });
+
+          function easterEgg() {
+  const easterEggElement = document.getElementById("easterEgg");
+
+  easterEggElement.style.opacity = "0";
+  
+  
+  easterEggElement.style.display = "block";
+  
+  
+  setTimeout(() => {
+    easterEggElement.style.opacity = "1";
+  }, 100); 
+  
+
+  document.getElementById("titleContainer").style.display = "none";
+  localStorage.setItem("gameState", "endless");
+  document.getElementById("startMenu").style.display = "none";
+  document.getElementById("endlessModeAssets").style.display = "none";
+  document.getElementById("storyModeAssets").style.display = "none";
+  document.getElementById("shooterCanvas").style.display = "none";
+  document.getElementById("lossScreenContent").style.display = "none";
+  document.getElementById("winScreenContent").style.display = "none";
+  load.pause();
+  egg.play();
+}
+
+
+      });
+
+        function changeColor(element) {
+          element.style.color = getRandomColor();
+        }
+
+        function getRandomColor() {
+          const letters = "0123456789ABCDEF";
+          let color = "#";
+          for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+          }
+          return color;
+        }
+      </script>
+    </div>
+
+    <div id="startMenu">
+      <button onclick="startGame('versus')">Versus</button>
+      <button onclick="startGame('endless')">Endless</button>
+      <button onclick="startGame('story')">Story</button>
+    </div>
+
+    <div id="lossScreenContent">
+      <h1>Game Over</h1>
+      <h2>Final Score:</h2>
+      <span id="FinalVerdict"></span>
+      <p></p>
+      <span id="won"></span>
+      <p>Would you like to retry?</p>
+      <button id="resetSameGame">Retry</button>
+      <script>
+        document
+          .getElementById("resetSameGame")
+          .addEventListener("click", function () {
+            startGame(localStorage.getItem("gameState"));
+          });
+      </script>
+
+      <button id="reloadSite">Return to Menu</button>
+      <script>
+        document
+          .getElementById("reloadSite")
+          .addEventListener("click", function () {
+            window.location.href = "index.html";
+          });
+      </script>
+    </div>
+
+    <div id="winScreenContent">
+      <h1>YOU WIN!!!</h1>
+      <h2>Final Score:</h2>
+      <span id="FinalVerdictWin"></span>
+      <p></p>
+      <span id="wonWin"></span>
+      <p>Would you like to retry?</p>
+      <button id="resetWinSameGame">Retry</button>
+      <script>
+        document
+          .getElementById("resetWinSameGame")
+          .addEventListener("click", function () {
+            startGame(localStorage.getItem("gameState"));
+          });
+      </script>
+
+      <button id="reloadSiteWin">Return to Menu</button>
+      <script>
+        document
+          .getElementById("reloadSiteWin")
+          .addEventListener("click", function () {
+            window.location.href = "index.html";
+          });
+      </script>
+    </div>
+
+    <div id="VersusScreenContent">
+      <h1><span id="won2"></span></h1>
+      <h2><span id="lead"></span></h2>
+      <span id="FinalVerict"></span>
+      <p></p>
+      <span id="won"></span>
+      <p>Would you like to retry?</p>
+      <button id="resetSameVersusGame">Retry</button>
+      <script>
+        document
+          .getElementById("resetSameVersusGame")
+          .addEventListener("click", function () {
+            startGame(localStorage.getItem("gameState"));
+          });
+      </script>
+      <button id="reloadSiteVersusWin">Return to Menu</button>
+      <script>
+        document
+          .getElementById("reloadSiteVersusWin")
+          .addEventListener("click", function () {
+            window.location.href = "index.html";
+          });
+      </script>
+    </div>
+
+    <div id="storyModeAssets">
+
+      <div id="ballsShotDisplay" class="game-display">
+        Balls Shot: <span id="ballsShot">0</span> /
+        <span id="maxBalls">15</span>
+      </div>
+      <div id="scoreDisplay" class="game-display">
+        Score: <span id="score">0</span>
+      </div>
+      <div id="orangeCountDisplay" class="game-display">
+        Orange Circles Hit: <span id="orangeCount">0</span>
+      </div>
+      <div id="multiplierDisplay" class="game-display">
+        Multiplier: <span id="multiplier">1.0</span>
+      </div>
+    </div>
+    <div id="endlessModeAssets">
+      <div id="GamesWon" class="game-display">
+        Level: <span id="wonGameUI">1</span>
+      </div>
+    </div>
+
+    <canvas id="shooterCanvas" width="800" height="600"></canvas>
+
+    <div style="display: none" id="easterEgg"></div>
+
+    <script>
+      let wonLevels = 1;
+      let roundedScore;
+
+      const load = document.getElementById("load");
+      load.play();
+
+      function startGame(mode) {
+        document.getElementById("winScreenContent").style.display = "none";
+        document.getElementById("VersusScreenContent").style.display = "none";
+        switch (mode) {
+          case "versus":
+            document.getElementById("titleContainer").style.display = "block";
+            localStorage.setItem("gameState", "versus");
+            document.getElementById("startMenu").style.display = "none";
+
+            document.getElementById("storyModeAssets").style.display = "block";
+
+            document.getElementById("shooterCanvas").style.display = "block";
+
+            document.getElementById("lossScreenContent").style.display = "none";
+            document.getElementById("winScreenContent").style.display = "none";
+            document.getElementById("waterMark").style.display = "none";
+            startVersusGame();
+            break;
+
+          case "endless":
+            document.getElementById("titleContainer").style.display = "block";
+            localStorage.setItem("gameState", "endless");
+            document.getElementById("startMenu").style.display = "none";
+
+            document.getElementById("endlessModeAssets").style.display =
+              "block";
+            document.getElementById("storyModeAssets").style.display = "block";
+
+            document.getElementById("shooterCanvas").style.display = "block";
+
+            document.getElementById("lossScreenContent").style.display = "none";
+            document.getElementById("winScreenContent").style.display = "none";
+            document.getElementById("waterMark").style.display = "none";
+            startEndlessGame();
+            break;
+
+          case "story":
+            document.getElementById("titleContainer").style.display = "block";
+            localStorage.setItem("gameState", "story");
+
+            document.getElementById("startMenu").style.display = "none";
+
+            document.getElementById("storyModeAssets").style.display = "block";
+
+            document.getElementById("shooterCanvas").style.display = "block";
+
+            document.getElementById("lossScreenContent").style.display = "none";
+            document.getElementById("winScreenContent").style.display = "none";
+            document.getElementById("waterMark").style.display = "none";
+            startStoryGame();
+            break;
+
+          default:
+            alert("Invalid game mode.");
+        }
+      }
+
+      function startVersusGame() {
+        const Engine = Matter.Engine;
+        const Render = Matter.Render;
+        const Bodies = Matter.Bodies;
+        const World = Matter.World;
+        const Runner = Matter.Runner;
+
+        let player = 0;
+        let score2 = 0;
+
+        const ballDensity = 0.00001;
+        const ballRestitution = 0.99;
+        const ballFrictionAir = 0.0;
+        const gravity = 0.2;
+        const shootingSpeed = 4.5;
+        const hexRadius = 12;
+        const verticalSpacing = 30;
+        const horizontalSpacing = 50;
+        const hexColor = "#3498db";
+        const orangeColor = "#e67e22";
+        const audio = document.getElementById("myAudio");
+
+        const engine = Engine.create();
+        engine.gravity.y = gravity;
+
+        const render = Render.create({
+          element: document.body,
+          engine: engine,
+          canvas: document.getElementById("shooterCanvas"),
+          options: {
+            width: 800,
+            height: 600,
+            wireframes: false,
+          },
+        });
+
+        const runner = Runner.create();
+
+        const shooter = Bodies.rectangle(400, 580, 40, 20, {
+          isStatic: true,
+          angle: Math.PI / 2,
+          density: ballDensity,
+          restitution: ballRestitution,
+          frictionAir: ballFrictionAir,
+          render: { fillStyle: "#2ecc71" },
+        });
+
+        const directionLine = Bodies.rectangle(
+          shooter.position.x,
+          shooter.position.y,
+          200,
+          2,
+          {
+            isStatic: true,
+            isSensor: true,
+            angle: shooter.angle - (3 * Math.PI) / 4,
+            render: { fillStyle: "#e74c3c" },
+          }
+        );
+        World.add(engine.world, directionLine);
+
+        const bullets = [];
+
+        const orangeBricks = [];
+
+        const hitOrangeIndices = new Set();
+
+        const maxBalls = 20;
+
+        let ballsShot = 0;
+
+        let isBallInPlay = false;
+
+        const ballsShotDisplay = document.getElementById("ballsShot");
+
+        function createSpreadHexPattern(
+          startX,
+          startY,
+          numRows,
+          numCols,
+          brickColor,
+          orangeIndices
+        ) {
+          const bricks = [];
+          const brickRadius = 35;
+
+          const hexWidth = brickRadius * Math.sqrt(3);
+          const hexHeight = brickRadius * 2;
+
+          const totalWidth =
+            numCols * (hexWidth + horizontalSpacing) - horizontalSpacing;
+          const totalHeight =
+            numRows * (hexHeight + verticalSpacing) - verticalSpacing;
+
+          const offsetX = (800 - totalWidth) / 2;
+          const offsetY = (600 - totalHeight) / 2;
+
+          for (let row = 0; row < numRows; row++) {
+            const xOffset = row % 2 === 0 ? 0 : hexWidth / 2;
+
+            for (let col = 0; col < numCols; col++) {
+              const x =
+                startX +
+                col * (hexWidth + horizontalSpacing) +
+                xOffset +
+                offsetX;
+
+              const y =
+                startY + row * (hexHeight + verticalSpacing) + offsetY + 50;
+
+              const hexagon = [];
+              for (let side = 0; side < 6; side++) {
+                const angle = (Math.PI / 3) * side;
+                const cx = x + brickRadius * Math.cos(angle);
+                const cy = y + brickRadius * Math.sin(angle);
+                hexagon.push({ x: cx, y: cy });
+              }
+
+              hexagon.forEach((vertex, index) => {
+                const hexagonIndex = row * numCols * 6 + col * 6 + index;
+                const isOrange = orangeIndices.includes(hexagonIndex);
+                const brick = Bodies.circle(vertex.x, vertex.y, 9, {
+                  isStatic: true,
+                  render: { fillStyle: isOrange ? orangeColor : brickColor },
+                  frictionAir: 0.0,
+                  restitution: ballRestitution,
+                });
+
+                if (isOrange) {
+                  orangeBricks.push(brick);
+                }
+
+                bricks.push(brick);
+              });
+            }
+          }
+
+          return bricks;
+        }
+
+        let halfCircle;
+        function createHalfCircle(centerX, centerY, radius, brickColor) {
+          if (player === 0) {
+            halfCircle = Bodies.circle(centerX, centerY, radius, {
+              isStatic: true,
+              render: { fillStyle: "blue" },
+              frictionAir: 0.0,
+              restitution: ballRestitution,
+            });
+            return halfCircle;
+          }
+          if (player === 1) {
+            halfCircle = Bodies.circle(centerX, centerY, radius, {
+              isStatic: true,
+              render: { fillStyle: "red" },
+              frictionAir: 0.0,
+              restitution: ballRestitution,
+            });
+            return halfCircle;
+          }
+        }
+
+        const numCols = 5;
+        const numRows = 4;
+        const totalObstacles = numCols * numRows;
+        const orangeIndices = getUniqueRandomIndices(25, numRows * numCols * 6);
+
+        const blueBricks = createSpreadHexPattern(
+          0,
+          0,
+          numRows,
+          numCols,
+          hexColor,
+          orangeIndices
+        );
+
+        let aimingHalfCircle = createHalfCircle(400, 0, 60, "#e74c3c");
+
+        const ceiling = Bodies.rectangle(400, 5, 800, 10, {
+          isStatic: true,
+          collisionFilter: { group: -1 },
+        });
+        const leftWall = Bodies.rectangle(5, 300, 10, 600, {
+          isStatic: true,
+          collisionFilter: { group: -1 },
+        });
+        const rightWall = Bodies.rectangle(795, 300, 10, 600, {
+          isStatic: true,
+          collisionFilter: { group: -1 },
+        });
+
+        const allObstacles = [
+          shooter,
+          directionLine,
+          ...blueBricks,
+          aimingHalfCircle,
+          ceiling,
+          leftWall,
+          rightWall,
+        ];
+
+        World.add(engine.world, allObstacles);
+
+        let orangeCount = 0;
+
+        const scoreDisplay = document.getElementById("scoreDisplay");
+        const orangeCountDisplay = document.getElementById("orangeCount");
+        const maxBallsDisplay = document.getElementById("maxBalls");
+        let score = 0;
+        let multiplier = 1;
+
+        const player1 = new Tone.Player().toDestination();
+
+        const pitchShift = new Tone.PitchShift().toDestination();
+
+        player1.connect(pitchShift);
+
+        let cooldown;
+        const audioFilePath = "/Sounds/bluepeg.mp3";
+        Tone.loaded().then(() => {
+          player1.load(audioFilePath);
+        });
+
+        let pitchShiftValue = 0;
+
+        function increasePitch() {
+          if (!player1.buffer.loaded) {
+            console.error("Audio file is not loaded yet.");
+            return;
+          }
+
+          if (cooldown) {
+            return;
+          }
+
+          pitchShiftValue += 0.2;
+
+          pitchShift.pitch = pitchShiftValue;
+
+          if (player1.state === "started") {
+            player1.stop();
+          }
+
+          player1.start();
+
+          cooldown = true;
+          setTimeout(() => {
+            cooldown = false;
+          }, 200);
+        }
+
+        const player2 = new Tone.Player().toDestination();
+
+        const pitchShift2 = new Tone.PitchShift().toDestination();
+
+        player2.connect(pitchShift2);
+
+        const audioFilePath2 = "/Sounds/orangepeg.mp3";
+        Tone.loaded().then(() => {
+          player2.load(audioFilePath2);
+        });
+
+        let pitchShiftValue2 = 0;
+
+        let cooldown2 = false;
+
+        function increasePitchForPlayer2() {
+          increasePitch2(player2, pitchShift2, pitchShiftValue2, cooldown2);
+        }
+
+        function increasePitch2(player, pitchShift, pitchShiftValue, cooldown) {
+          if (!player.buffer.loaded) {
+            console.error("Audio file is not loaded yet.");
+            return;
+          }
+
+          if (cooldown) {
+            return;
+          }
+
+          pitchShiftValue += 0.2;
+
+          pitchShift.pitch = pitchShiftValue;
+
+          if (player.state === "started") {
+            player.stop();
+          }
+
+          player.start();
+
+          cooldown = true;
+          setTimeout(() => {
+            cooldown = false;
+          }, 2000);
+        }
+
+        const multiplierDisplay = document.getElementById("multiplierDisplay");
+
+        scoreDisplay.innerText = score;
+        multiplierDisplay.innerText = multiplier.toFixed(1);
+
+        Matter.Events.on(engine, "collisionStart", (event) => {
+          const pairs = event.pairs;
+
+          pairs.forEach((collision) => {
+            if (
+              bullets.includes(collision.bodyA) ||
+              bullets.includes(collision.bodyB)
+            ) {
+              multiplier += 0.015 * multiplier;
+              if (multiplier > 10) {
+                multiplier = 10;
+              }
+
+              if (
+                orangeBricks.includes(collision.bodyA) &&
+                !hitOrangeIndices.has(orangeBricks.indexOf(collision.bodyA))
+              ) {
+                increasePitchForPlayer2();
+                changeColorOnHit(collision.bodyA);
+                if (player === 0) {
+                  score += 100 * multiplier;
+                }
+                if (player === 1) {
+                  score2 += 100 * multiplier;
+                }
+
+                removeAfterDelay(collision.bodyA, 3000);
+
+                orangeCount++;
+
+                updateDisplay();
+
+                hitOrangeIndices.add(orangeBricks.indexOf(collision.bodyA));
+              } else if (
+                orangeBricks.includes(collision.bodyB) &&
+                !hitOrangeIndices.has(orangeBricks.indexOf(collision.bodyB))
+              ) {
+                changeColorOnHit(collision.bodyB);
+
+                removeAfterDelay(collision.bodyB, 3000);
+
+                orangeCount++;
+
+                updateDisplay();
+
+                hitOrangeIndices.add(orangeBricks.indexOf(collision.bodyB));
+              }
+
+              if (
+                blueBricks.includes(collision.bodyA) ||
+                blueBricks.includes(collision.bodyB)
+              ) {
+                if (player === 0) {
+                  score += 10 * multiplier;
+                }
+                if (player === 1) {
+                  score2 += 10 * multiplier;
+                }
+
+                changeColorOnHit(
+                  blueBricks.includes(collision.bodyA)
+                    ? collision.bodyA
+                    : collision.bodyB
+                );
+
+                removeAfterDelay(
+                  blueBricks.includes(collision.bodyA)
+                    ? collision.bodyA
+                    : collision.bodyB,
+                  3000
+                );
+              }
+              if (
+                orangeBricks.includes(collision.bodyA) ||
+                orangeBricks.includes(collision.bodyB)
+              ) {
+                const orangeCircle = orangeBricks.includes(collision.bodyA)
+                  ? collision.bodyA
+                  : collision.bodyB;
+                if (!hitOrangeIndices.has(orangeBricks.indexOf(orangeCircle))) {
+                  updateDisplay();
+
+                  hitOrangeIndices.add(orangeBricks.indexOf(orangeCircle));
+                }
+              } else if (
+                blueBricks.includes(collision.bodyA) ||
+                blueBricks.includes(collision.bodyB)
+              ) {
+                increasePitch();
+                if (player === 0) {
+                  score += 10 * multiplier;
+                }
+                if (player === 1) {
+                  score2 += 10 * multiplier;
+                }
+
+                updateDisplay();
+              }
+              if (orangeCount === 25) {
+                showLossScreen();
+              }
+            }
+          });
+        });
+
+        function showWinScreenWithDelay() {
+          setTimeout(WinScreen, 0);
+          setTimeout(removeConfetti, 0);
+          setTimeout(resetGame, 0);
+        }
+
+        function removeConfetti() {
+          World.clear(engine.world, false);
+          isBallInPlay = false;
+          preventShooting = false;
+          multiplier = 1;
+          updateDisplay();
+        }
+
+        function showWinScreen() {}
+
+        function WinScreen(score) {
+          document.getElementById("winScreenContent").style.display = "block";
+          document.getElementById("storyModeAssets").style.display = "none";
+          document.getElementById("shooterCanvas").style.display = "none";
+          document.getElementById("startMenu").style.display = "none";
+          document.getElementById("titleContainer").style.display = "none";
+          audio.pause();
+        }
+
+        function checkGameOver() {
+          if (ballsShot === maxBalls && !isBallInPlay) {
+            if (orangeCount < 25) {
+              showLossScreen();
+              ballsShot = 0;
+              orangeCount = 0;
+            }
+          }
+        }
+
+        function showLossScreen() {
+          document.getElementById("lossScreenContent").style.display =
+            "inline-block";
+          document.getElementById("storyModeAssets").style.display = "none";
+          document.getElementById("shooterCanvas").style.display = "none";
+          document.getElementById("startMenu").style.display = "none";
+          document.getElementById("titleContainer").style.display = "none";
+          document.getElementById("VersusScreenContent").style.display =
+            "block";
+        }
+
+        function retryLevel() {
+          document.getElementById("lossScreen").style.display = "none";
+          alert("Retrying the level...");
+        }
+
+        function returnToMenu() {
+          document.getElementById("lossScreen").style.display = "none";
+          document.getElementById("startMenu").style.display = "block";
+          alert("Returning to the menu...");
+        }
+
+        function resetGame() {
+          bullets.forEach((bullet) => {
+            World.remove(engine.world, bullet);
+          });
+          bullets.length = 0;
+
+          orangeCount = 0;
+          hitOrangeIndices.clear();
+
+          ballsShot = 0;
+
+          Matter.Body.setPosition(shooter, { x: 400, y: 580 });
+
+          orangeBricks.forEach((circle) => {
+            World.remove(engine.world, circle);
+          });
+
+          blueBricks.forEach((circle) => {
+            World.remove(engine.world, circle);
+          });
+
+          document.addEventListener("mousedown", handleMouseDown);
+
+          const newOrangeIndices = getUniqueRandomIndices(
+            25,
+            numRows * numCols * 6
+          );
+          const newBlueIndices = getUniqueRandomIndices(
+            numRows * numCols * 6 - 25,
+            numRows * numCols * 6
+          );
+
+          const newOrangeBricks = createSpreadHexPattern(
+            0,
+            0,
+            numRows,
+            numCols,
+            hexColor,
+            newOrangeIndices
+          );
+          const newBlueBricks = createSpreadHexPattern(
+            0,
+            0,
+            numRows,
+            numCols,
+            hexColor,
+            newBlueIndices
+          );
+
+          World.add(engine.world, newOrangeBricks);
+          World.add(engine.world, newBlueBricks);
+
+          updateDisplay();
+        }
+
+        let bullet;
+
+        Matter.Events.on(engine, "beforeUpdate", checkGameOver);
+
+        let preventShooting = false;
+
+        function handleMouseDown() {
+          if (!isBallInPlay && ballsShot < maxBalls && !preventShooting) {
+            let offsetX = 20 * Math.cos(shooter.angle);
+            let offsetY = 20 * Math.sin(shooter.angle);
+            shoot.play();
+            if (player === 0) {
+              bullet = Bodies.circle(
+                shooter.position.x + offsetX,
+                shooter.position.y + offsetY,
+                7,
+                {
+                  density: ballDensity,
+                  restitution: ballRestitution,
+                  frictionAir: ballFrictionAir,
+                  render: { fillStyle: "blue" },
+                }
+              );
+            }
+            if (player === 1) {
+              bullet = Bodies.circle(
+                shooter.position.x + offsetX,
+                shooter.position.y + offsetY,
+                7,
+                {
+                  density: ballDensity,
+                  restitution: ballRestitution,
+                  frictionAir: ballFrictionAir,
+                  render: { fillStyle: "red" },
+                }
+              );
+            }
+            Matter.Body.setVelocity(bullet, {
+              x: shootingSpeed * Math.cos(shooter.angle),
+              y: shootingSpeed * Math.sin(shooter.angle),
+            });
+
+            bullets.push(bullet);
+            World.add(engine.world, [bullet]);
+
+            ballsShot++;
+
+            updateDisplay();
+
+            isBallInPlay = true;
+
+            const indexOfBullet = bullets.indexOf(bullet);
+            preventShooting = true;
+            Matter.Events.on(engine, "beforeUpdate", waitForBallToExit);
+
+            function waitForBallToExit() {
+              if (
+                (bullets[indexOfBullet] &&
+                  bullets[indexOfBullet].position.y > 600) ||
+                bullets[indexOfBullet].position.y < 0
+              ) {
+                pitchShiftValue = 0;
+                switchPlayer();
+                isBallInPlay = false;
+                preventShooting = false;
+                Matter.Events.off(engine, "beforeUpdate", waitForBallToExit);
+                multiplier = 1;
+                updateDisplay();
+                if (orangeCount === 25) {
+                  showWinScreenWithDelay();
+                }
+              } else {
+              }
+            }
+
+            if (ballsShot === maxBalls) {
+              document.removeEventListener("mousedown", handleMouseDown);
+            }
+          } else {
+          }
+        }
+        document.addEventListener("mousedown", handleMouseDown);
+
+        function calculateTrajectory(shooter, mouseX, mouseY) {
+          const angle = Math.atan2(
+            mouseY - shooter.position.y,
+            mouseX - shooter.position.x
+          );
+          const velocityX = shootingSpeed * Math.cos(angle);
+          const velocityY = shootingSpeed * Math.sin(angle);
+
+          const numPoints = 100;
+          const timeInterval = 0.05;
+          const trajectoryPoints = [];
+
+          for (let t = 0; t <= numPoints; t++) {
+            const x = shooter.position.x + velocityX * t * timeInterval;
+            const y =
+              shooter.position.y +
+              (-0.5 * gravity * Math.pow(t * timeInterval, 2) +
+                velocityY * t * timeInterval);
+
+            trajectoryPoints.push({ x, y });
+          }
+
+          return trajectoryPoints;
+        }
+
+        document.addEventListener("mousemove", (event) => {
+          const mouseX =
+            event.clientX - render.canvas.getBoundingClientRect().left;
+          const mouseY =
+            event.clientY - render.canvas.getBoundingClientRect().top;
+
+          const angle = Math.atan2(mouseY - 50, mouseX - 400);
+
+          const halfCircleRadius = 60;
+          const newX = 400 + halfCircleRadius * Math.cos(angle);
+          const newY = 10 + halfCircleRadius * Math.sin(angle);
+          Matter.Body.setPosition(shooter, { x: newX, y: newY });
+          Matter.Body.setAngle(shooter, angle);
+
+          Matter.Body.setPosition(directionLine, {
+            x: shooter.position.x,
+            y: shooter.position.y,
+          });
+
+          const gravityAngle = Math.atan2(gravity, shootingSpeed);
+
+          Matter.Body.setAngle(directionLine, angle - gravityAngle);
+
+          const trajectoryPoints = calculateTrajectory(shooter, mouseX, mouseY);
+
+          drawTrajectoryPoints(trajectoryPoints);
+        });
+
+        function drawTrajectoryPoints(points) {
+          const canvas = document.getElementById("shooterCanvas");
+          const ctx = canvas.getContext("2d");
+
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+          ctx.fillStyle = "#f1c40f";
+
+          points.forEach((point) => {
+            ctx.beginPath();
+            ctx.arc(point.x, point.y, 2, 0, Math.PI * 2);
+            ctx.fill();
+          });
+        }
+        let lead;
+        let roundedScore2;
+        const won2 = document.getElementById("won2");
+        const leader = document.getElementById("lead");
+        let most;
+
+        function updateDisplay() {
+          let currentScore = player === 0 ? score : score2;
+          scoreDisplay.innerText = `Player 1 Score: ${roundedScore} | Player 2 Score: ${roundedScore2}`;
+          ballsShotDisplay.innerText = `${ballsShot}`;
+          orangeCountDisplay.innerText = `${orangeCount}`;
+          roundedScore = Math.ceil(score);
+          roundedScore2 = Math.ceil(score2);
+          let roundedMultiplier = Math.ceil(multiplier);
+          if (score > score2) {
+            lead = 1;
+            most = roundedScore - roundedScore2;
+          } else {
+            lead = 2;
+            most = roundedScore2 - roundedScore;
+          }
+          won2.innerText = "Player " + lead + " Wins!";
+          leader.innerText = "Player " + lead + " won with " + most + " points";
+
+          maxBallsDisplay.innerText = maxBalls;
+
+          multiplierDisplay.innerText = multiplier.toFixed(1);
+        }
+
+        function switchPlayer() {
+          player = player === 0 ? 1 : 0;
+          aimingHalfCircle = createHalfCircle(400, 0, 60, "#e74c3c");
+          World.add(engine.world, aimingHalfCircle);
+          updateDisplay();
+        }
+
+        function removeAfterDelay(object, delay) {
+          setTimeout(() => {
+            World.remove(engine.world, object);
+
+            if (bullets.includes(object)) {
+              bullets.splice(bullets.indexOf(object), 1);
+            }
+          }, delay);
+        }
+
+        function changeColorOnHit(object) {
+          const originalColor = object.render.fillStyle;
+
+          const glowingColor = brightenColor(originalColor, 100);
+
+          object.render.fillStyle = glowingColor;
+
+          removeAfterDelay(object, 5000);
+        }
+
+        function brightenColor(color, amount) {
+          const hex = color.slice(1);
+          const num = parseInt(hex, 16);
+          const r = Math.min(255, (num >> 16) + amount);
+          const g = Math.min(255, ((num >> 8) & 255) + amount);
+          const b = Math.min(255, (num & 255) + amount);
+          return `#${((1 << 24) | (r << 16) | (g << 8) | b)
+            .toString(16)
+            .slice(1)}`;
+        }
+
+        function getUniqueRandomIndices(count, maxIndex) {
+          const indices = [];
+          while (indices.length < count) {
+            const index = Math.floor(Math.random() * maxIndex);
+            if (!indices.includes(index)) {
+              indices.push(index);
+            }
+          }
+          return indices;
+        }
+
+        Runner.run(runner, engine);
+        Render.run(render);
+      }
+
+      function startStoryGame() {
+        const Engine = Matter.Engine;
+        const Render = Matter.Render;
+        const Bodies = Matter.Bodies;
+        const World = Matter.World;
+        const Runner = Matter.Runner;
+
+        const ballDensity = 0.00001;
+        const ballRestitution = 0.99;
+        const ballFrictionAir = 0.0;
+        const gravity = 0.2;
+        const shootingSpeed = 4.5;
+        const hexRadius = 12;
+        const verticalSpacing = 30;
+        const horizontalSpacing = 50;
+        const hexColor = "#3498db";
+        const orangeColor = "#e67e22";
+        const audio = document.getElementById("myAudio");
+
+        const engine = Engine.create();
+        engine.gravity.y = gravity;
+
+        const render = Render.create({
+          element: document.body,
+          engine: engine,
+          canvas: document.getElementById("shooterCanvas"),
+          options: {
+            width: 800,
+            height: 600,
+            wireframes: false,
+          },
+        });
+
+        const runner = Runner.create();
+
+        const shooter = Bodies.rectangle(400, 580, 40, 20, {
+          isStatic: true,
+          angle: Math.PI / 2,
+          density: ballDensity,
+          restitution: ballRestitution,
+          frictionAir: ballFrictionAir,
+          render: { fillStyle: "#2ecc71" },
+        });
+
+        const directionLine = Bodies.rectangle(
+          shooter.position.x,
+          shooter.position.y,
+          200,
+          2,
+          {
+            isStatic: true,
+            isSensor: true,
+            angle: shooter.angle - (3 * Math.PI) / 4,
+            render: { fillStyle: "#e74c3c" },
+          }
+        );
+        World.add(engine.world, directionLine);
+
+        const bullets = [];
+
+        const orangeBricks = [];
+
+        const hitOrangeIndices = new Set();
+
+        const maxBalls = 25;
+
+        let ballsShot = 0;
+
+        let isBallInPlay = false;
+
+        const ballsShotDisplay = document.getElementById("ballsShot");
+
+        function createSpreadHexPattern(
+          startX,
+          startY,
+          numRows,
+          numCols,
+          brickColor,
+          orangeIndices
+        ) {
+          const bricks = [];
+          const brickRadius = 35;
+
+          const hexWidth = brickRadius * Math.sqrt(3);
+          const hexHeight = brickRadius * 2;
+
+          const totalWidth =
+            numCols * (hexWidth + horizontalSpacing) - horizontalSpacing;
+          const totalHeight =
+            numRows * (hexHeight + verticalSpacing) - verticalSpacing;
+
+          const offsetX = (800 - totalWidth) / 2;
+          const offsetY = (600 - totalHeight) / 2;
+
+          for (let row = 0; row < numRows; row++) {
+            const xOffset = row % 2 === 0 ? 0 : hexWidth / 2;
+
+            for (let col = 0; col < numCols; col++) {
+              const x =
+                startX +
+                col * (hexWidth + horizontalSpacing) +
+                xOffset +
+                offsetX;
+
+              const y =
+                startY + row * (hexHeight + verticalSpacing) + offsetY + 50;
+
+              const hexagon = [];
+              for (let side = 0; side < 6; side++) {
+                const angle = (Math.PI / 3) * side;
+                const cx = x + brickRadius * Math.cos(angle);
+                const cy = y + brickRadius * Math.sin(angle);
+                hexagon.push({ x: cx, y: cy });
+              }
+
+              hexagon.forEach((vertex, index) => {
+                const hexagonIndex = row * numCols * 6 + col * 6 + index;
+                const isOrange = orangeIndices.includes(hexagonIndex);
+                const brick = Bodies.circle(vertex.x, vertex.y, 9, {
+                  isStatic: true,
+                  render: { fillStyle: isOrange ? orangeColor : brickColor },
+                  frictionAir: 0.0,
+                  restitution: ballRestitution,
+                });
+
+                if (isOrange) {
+                  orangeBricks.push(brick);
+                }
+
+                bricks.push(brick);
+              });
+            }
+          }
+
+          return bricks;
+        }
+
+        function createHalfCircle(centerX, centerY, radius, brickColor) {
+          const halfCircle = Bodies.circle(centerX, centerY, radius, {
+            isStatic: true,
+            render: { fillStyle: brickColor },
+            frictionAir: 0.0,
+            restitution: ballRestitution,
+          });
+          return halfCircle;
+        }
+
+        const numCols = 5;
+        const numRows = 4;
+        const totalObstacles = numCols * numRows;
+        const orangeIndices = getUniqueRandomIndices(25, numRows * numCols * 6);
+
+        const blueBricks = createSpreadHexPattern(
+          0,
+          0,
+          numRows,
+          numCols,
+          hexColor,
+          orangeIndices
+        );
+
+        const aimingHalfCircle = createHalfCircle(400, 0, 60, "#e74c3c");
+
+        const ceiling = Bodies.rectangle(400, 5, 800, 10, {
+          isStatic: true,
+          collisionFilter: { group: -1 },
+        });
+        const leftWall = Bodies.rectangle(5, 300, 10, 600, {
+          isStatic: true,
+          collisionFilter: { group: -1 },
+        });
+        const rightWall = Bodies.rectangle(795, 300, 10, 600, {
+          isStatic: true,
+          collisionFilter: { group: -1 },
+        });
+
+        const allObstacles = [
+          shooter,
+          directionLine,
+          ...blueBricks,
+          aimingHalfCircle,
+          ceiling,
+          leftWall,
+          rightWall,
+        ];
+
+        World.add(engine.world, allObstacles);
+
+        let orangeCount = 0;
+
+        const scoreDisplay = document.getElementById("scoreDisplay");
+        const orangeCountDisplay = document.getElementById("orangeCount");
+        const maxBallsDisplay = document.getElementById("maxBalls");
+        let score = 0;
+        let multiplier = 1;
+
+        const player1 = new Tone.Player().toDestination();
+
+        const pitchShift = new Tone.PitchShift().toDestination();
+
+        player1.connect(pitchShift);
+
+        let cooldown;
+        const audioFilePath = "/Sounds/bluepeg.mp3";
+        Tone.loaded().then(() => {
+          player1.load(audioFilePath);
+        });
+
+        let pitchShiftValue = 0;
+
+        function increasePitch() {
+          if (!player1.buffer.loaded) {
+            console.error("Audio file is not loaded yet.");
+            return;
+          }
+
+          if (cooldown) {
+            return;
+          }
+
+          pitchShiftValue += 0.5;
+
+          pitchShift.pitch = pitchShiftValue;
+
+          if (player1.state === "started") {
+            player1.stop();
+          }
+
+          player1.start();
+
+          cooldown = true;
+          setTimeout(() => {
+            cooldown = false;
+          }, 200);
+        }
+
+        const player2 = new Tone.Player().toDestination();
+
+        var FinalVerdict = document.getElementById("FinalVerdict");
+
+        FinalVerdict.textContent = roundedScore;
+
+        var FinalVerdictWin = document.getElementById("FinalVerdictWin");
+
+        FinalVerdictWin.textContent = roundedScore;
+
+        const pitchShift2 = new Tone.PitchShift().toDestination();
+
+        player2.connect(pitchShift2);
+
+        const audioFilePath2 = "/Sounds/orangepeg.mp3";
+        Tone.loaded().then(() => {
+          player2.load(audioFilePath2);
+        });
+
+        let pitchShiftValue2 = 0;
+
+        let cooldown2 = false;
+
+        function increasePitchForPlayer2() {
+          increasePitch2(player2, pitchShift2, pitchShiftValue2, cooldown2);
+        }
+
+        function increasePitch2(player, pitchShift, pitchShiftValue, cooldown) {
+          if (!player.buffer.loaded) {
+            console.error("Audio file is not loaded yet.");
+            return;
+          }
+
+          if (cooldown) {
+            return;
+          }
+
+          pitchShiftValue += 0.2;
+
+          pitchShift.pitch = pitchShiftValue;
+
+          if (player.state === "started") {
+            player.stop();
+          }
+
+          player.start();
+
+          cooldown = true;
+          setTimeout(() => {
+            cooldown = false;
+          }, 2000);
+        }
+
+        const multiplierDisplay = document.getElementById("multiplierDisplay");
+
+        scoreDisplay.innerText = score;
+        multiplierDisplay.innerText = multiplier.toFixed(1);
+
+        Matter.Events.on(engine, "collisionStart", (event) => {
+          const pairs = event.pairs;
+
+          pairs.forEach((collision) => {
+            if (
+              bullets.includes(collision.bodyA) ||
+              bullets.includes(collision.bodyB)
+            ) {
+              multiplier += 0.015 * multiplier;
+              if (multiplier > 10) {
+                multiplier = 10;
+              }
+
+              if (
+                orangeBricks.includes(collision.bodyA) &&
+                !hitOrangeIndices.has(orangeBricks.indexOf(collision.bodyA))
+              ) {
+                changeColorOnHit(collision.bodyA);
+                score += 100 * multiplier;
+
+                removeAfterDelay(collision.bodyA, 3000);
+                increasePitchForPlayer2();
+
+                orangeCount++;
+
+                updateDisplay();
+
+                hitOrangeIndices.add(orangeBricks.indexOf(collision.bodyA));
+              } else if (
+                orangeBricks.includes(collision.bodyB) &&
+                !hitOrangeIndices.has(orangeBricks.indexOf(collision.bodyB))
+              ) {
+                changeColorOnHit(collision.bodyB);
+
+                removeAfterDelay(collision.bodyB, 3000);
+
+                orangeCount++;
+                increasePitchForPlayer2();
+
+                updateDisplay();
+
+                hitOrangeIndices.add(orangeBricks.indexOf(collision.bodyB));
+              }
+
+              if (
+                blueBricks.includes(collision.bodyA) ||
+                blueBricks.includes(collision.bodyB)
+              ) {
+                score += 10 * multiplier;
+                changeColorOnHit(
+                  blueBricks.includes(collision.bodyA)
+                    ? collision.bodyA
+                    : collision.bodyB
+                );
+
+                removeAfterDelay(
+                  blueBricks.includes(collision.bodyA)
+                    ? collision.bodyA
+                    : collision.bodyB,
+                  3000
+                );
+              }
+              if (
+                orangeBricks.includes(collision.bodyA) ||
+                orangeBricks.includes(collision.bodyB)
+              ) {
+                const orangeCircle = orangeBricks.includes(collision.bodyA)
+                  ? collision.bodyA
+                  : collision.bodyB;
+                if (!hitOrangeIndices.has(orangeBricks.indexOf(orangeCircle))) {
+                  updateDisplay();
+
+                  hitOrangeIndices.add(orangeBricks.indexOf(orangeCircle));
+                }
+              } else if (
+                blueBricks.includes(collision.bodyA) ||
+                blueBricks.includes(collision.bodyB)
+              ) {
+                score += 10 * multiplier;
+                increasePitch();
+
+                updateDisplay();
+              }
+              if (orangeCount === 25) {
+                showWinScreen();
+              }
+            }
+          });
+        });
+
+        function showWinScreenWithDelay() {
+          setTimeout(WinScreen, 7000);
+          setTimeout(removeConfetti, 7000);
+          setTimeout(resetGame, 7000);
+        }
+
+        function removeConfetti() {
+          World.clear(engine.world, false);
+          isBallInPlay = false;
+          preventShooting = false;
+          multiplier = 1;
+          updateDisplay();
+        }
+
+        function showWinScreen() {
+          audio.play();
+          const confettiColors = ["#f1c40f", "#e74c3c", "#3498db", "#2ecc71"];
+          const numConfetti = 100;
+          const confettiSize = 2;
+
+          for (let i = 0; i < numConfetti; i++) {
+            const color =
+              confettiColors[Math.floor(Math.random() * confettiColors.length)];
+            const x = Math.random() * 800;
+            const y = Math.random() * 10;
+            const confetti = Bodies.circle(x, y, confettiSize, {
+              render: { fillStyle: color },
+              restitution: 0.5,
+              friction: 0.2,
+              density: 0.1,
+            });
+            World.add(engine.world, confetti);
+          }
+        }
+
+        function WinScreen(score) {
+          document.getElementById("winScreenContent").style.display =
+            "inline-block";
+          document.getElementById("storyModeAssets").style.display = "none";
+          document.getElementById("shooterCanvas").style.display = "none";
+          document.getElementById("startMenu").style.display = "none";
+          document.getElementById("titleContainer").style.display = "none";
+          audio.pause();
+        }
+
+        function checkGameOver() {
+          if (ballsShot === maxBalls && !isBallInPlay) {
+            if (orangeCount < 25) {
+              showLossScreen();
+              ballsShot = 0;
+              orangeCount = 0;
+            }
+          }
+        }
+
+        function showLossScreen() {
+          document.getElementById("lossScreenContent").style.display =
+            "inline-block";
+          document.getElementById("storyModeAssets").style.display = "none";
+          document.getElementById("shooterCanvas").style.display = "none";
+          document.getElementById("startMenu").style.display = "none";
+          document.getElementById("titleContainer").style.display = "none";
+        }
+
+        function retryLevel() {
+          document.getElementById("lossScreen").style.display = "none";
+          alert("Retrying the level...");
+        }
+
+        function returnToMenu() {
+          document.getElementById("lossScreen").style.display = "none";
+          document.getElementById("startMenu").style.display = "block";
+          alert("Returning to the menu...");
+        }
+
+        function resetGame() {
+          bullets.forEach((bullet) => {
+            World.remove(engine.world, bullet);
+          });
+          bullets.length = 0;
+
+          orangeCount = 0;
+          hitOrangeIndices.clear();
+
+          ballsShot = 0;
+
+          Matter.Body.setPosition(shooter, { x: 400, y: 580 });
+
+          orangeBricks.forEach((circle) => {
+            World.remove(engine.world, circle);
+          });
+
+          blueBricks.forEach((circle) => {
+            World.remove(engine.world, circle);
+          });
+
+          document.addEventListener("mousedown", handleMouseDown);
+
+          const newOrangeIndices = getUniqueRandomIndices(
+            25,
+            numRows * numCols * 6
+          );
+          const newBlueIndices = getUniqueRandomIndices(
+            numRows * numCols * 6 - 25,
+            numRows * numCols * 6
+          );
+
+          const newOrangeBricks = createSpreadHexPattern(
+            0,
+            0,
+            numRows,
+            numCols,
+            hexColor,
+            newOrangeIndices
+          );
+          const newBlueBricks = createSpreadHexPattern(
+            0,
+            0,
+            numRows,
+            numCols,
+            hexColor,
+            newBlueIndices
+          );
+
+          World.add(engine.world, newOrangeBricks);
+          World.add(engine.world, newBlueBricks);
+
+          updateDisplay();
+        }
+
+        Matter.Events.on(engine, "beforeUpdate", checkGameOver);
+
+        let preventShooting = false;
+
+        function handleMouseDown() {
+          if (!isBallInPlay && ballsShot < maxBalls && !preventShooting) {
+            shoot.play();
+            const offsetX = 20 * Math.cos(shooter.angle);
+            const offsetY = 20 * Math.sin(shooter.angle);
+
+            const bullet = Bodies.circle(
+              shooter.position.x + offsetX,
+              shooter.position.y + offsetY,
+              7,
+              {
+                density: ballDensity,
+                restitution: ballRestitution,
+                frictionAir: ballFrictionAir,
+                render: { fillStyle: "#2ecc71" },
+              }
+            );
+
+            Matter.Body.setVelocity(bullet, {
+              x: shootingSpeed * Math.cos(shooter.angle),
+              y: shootingSpeed * Math.sin(shooter.angle),
+            });
+
+            bullets.push(bullet);
+            World.add(engine.world, [bullet]);
+
+            ballsShot++;
+
+            updateDisplay();
+
+            isBallInPlay = true;
+
+            const indexOfBullet = bullets.indexOf(bullet);
+            preventShooting = true;
+            Matter.Events.on(engine, "beforeUpdate", waitForBallToExit);
+
+            function waitForBallToExit() {
+              if (
+                (bullets[indexOfBullet] &&
+                  bullets[indexOfBullet].position.y > 600) ||
+                bullets[indexOfBullet].position.y < 0
+              ) {
+                pitchShiftValue = 0;
+                isBallInPlay = false;
+                preventShooting = false;
+                Matter.Events.off(engine, "beforeUpdate", waitForBallToExit);
+                multiplier = 1;
+                updateDisplay();
+                if (orangeCount === 25) {
+                  showWinScreenWithDelay();
+                }
+              } else {
+              }
+            }
+
+            if (ballsShot === maxBalls) {
+              document.removeEventListener("mousedown", handleMouseDown);
+            }
+          } else {
+          }
+        }
+
+        document.addEventListener("mousedown", handleMouseDown);
+
+        function calculateTrajectory(shooter, mouseX, mouseY) {
+          const angle = Math.atan2(
+            mouseY - shooter.position.y,
+            mouseX - shooter.position.x
+          );
+          const velocityX = shootingSpeed * Math.cos(angle);
+          const velocityY = shootingSpeed * Math.sin(angle);
+
+          const numPoints = 100;
+          const timeInterval = 0.05;
+          const trajectoryPoints = [];
+
+          for (let t = 0; t <= numPoints; t++) {
+            const x = shooter.position.x + velocityX * t * timeInterval;
+            const y =
+              shooter.position.y +
+              (-0.5 * gravity * Math.pow(t * timeInterval, 2) +
+                velocityY * t * timeInterval);
+
+            trajectoryPoints.push({ x, y });
+          }
+
+          return trajectoryPoints;
+        }
+
+        document.addEventListener("mousemove", (event) => {
+          const mouseX =
+            event.clientX - render.canvas.getBoundingClientRect().left;
+          const mouseY =
+            event.clientY - render.canvas.getBoundingClientRect().top;
+
+          const angle = Math.atan2(mouseY - 50, mouseX - 400);
+
+          const halfCircleRadius = 60;
+          const newX = 400 + halfCircleRadius * Math.cos(angle);
+          const newY = 10 + halfCircleRadius * Math.sin(angle);
+          Matter.Body.setPosition(shooter, { x: newX, y: newY });
+          Matter.Body.setAngle(shooter, angle);
+
+          Matter.Body.setPosition(directionLine, {
+            x: shooter.position.x,
+            y: shooter.position.y,
+          });
+
+          const gravityAngle = Math.atan2(gravity, shootingSpeed);
+
+          Matter.Body.setAngle(directionLine, angle - gravityAngle);
+
+          const trajectoryPoints = calculateTrajectory(shooter, mouseX, mouseY);
+
+          drawTrajectoryPoints(trajectoryPoints);
+        });
+
+        function drawTrajectoryPoints(points) {
+          const canvas = document.getElementById("shooterCanvas");
+          const ctx = canvas.getContext("2d");
+
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+          ctx.fillStyle = "#f1c40f";
+
+          points.forEach((point) => {
+            ctx.beginPath();
+            ctx.arc(point.x, point.y, 2, 0, Math.PI * 2);
+            ctx.fill();
+          });
+        }
+
+        function updateDisplay() {
+          let roundedScore = Math.ceil(score);
+          let roundedMultiplier = Math.ceil(multiplier);
+          orangeCountDisplay.innerText = orangeCount;
+          ballsShotDisplay.innerText = ballsShot;
+          maxBallsDisplay.innerText = maxBalls;
+          scoreDisplay.innerText = roundedScore;
+          multiplierDisplay.innerText = multiplier.toFixed(1);
+          document.getElementById("FinalVerdict").innerText =
+            roundedScore + " points";
+          document.getElementById("FinalVerdictWin").innerText =
+            roundedScore + " points";
+        }
+
+        function removeAfterDelay(object, delay) {
+          setTimeout(() => {
+            World.remove(engine.world, object);
+
+            if (bullets.includes(object)) {
+              bullets.splice(bullets.indexOf(object), 1);
+            }
+          }, delay);
+        }
+
+        function changeColorOnHit(object) {
+          const originalColor = object.render.fillStyle;
+
+          const glowingColor = brightenColor(originalColor, 100);
+
+          object.render.fillStyle = glowingColor;
+
+          removeAfterDelay(object, 5000);
+        }
+
+        function brightenColor(color, amount) {
+          const hex = color.slice(1);
+          const num = parseInt(hex, 16);
+          const r = Math.min(255, (num >> 16) + amount);
+          const g = Math.min(255, ((num >> 8) & 255) + amount);
+          const b = Math.min(255, (num & 255) + amount);
+          return `#${((1 << 24) | (r << 16) | (g << 8) | b)
+            .toString(16)
+            .slice(1)}`;
+        }
+
+        function getUniqueRandomIndices(count, maxIndex) {
+          const indices = [];
+          while (indices.length < count) {
+            const index = Math.floor(Math.random() * maxIndex);
+            if (!indices.includes(index)) {
+              indices.push(index);
+            }
+          }
+          return indices;
+        }
+
+        Runner.run(runner, engine);
+        Render.run(render);
+      }
+
+      function startEndlessGame() {
+        const Engine = Matter.Engine;
+        const Render = Matter.Render;
+        const Bodies = Matter.Bodies;
+        const World = Matter.World;
+        const Runner = Matter.Runner;
+
+        const ballDensity = 0.00001;
+        const ballRestitution = 0.99;
+        const ballFrictionAir = 0.0;
+        const gravity = 0.2;
+        const shootingSpeed = 4.5;
+        const hexRadius = 12;
+        const verticalSpacing = 30;
+        const horizontalSpacing = 50;
+        const hexColor = "#3498db";
+        const orangeColor = "#e67e22";
+        const audio = document.getElementById("myAudio");
+        wonLevels = 1;
+
+        const engine = Engine.create();
+        engine.gravity.y = gravity;
+
+        const render = Render.create({
+          element: document.body,
+          engine: engine,
+          canvas: document.getElementById("shooterCanvas"),
+          options: {
+            width: 800,
+            height: 600,
+            wireframes: false,
+          },
+        });
+
+        const runner = Runner.create();
+
+        const shooter = Bodies.rectangle(400, 580, 40, 20, {
+          isStatic: true,
+          angle: Math.PI / 2,
+          density: ballDensity,
+          restitution: ballRestitution,
+          frictionAir: ballFrictionAir,
+          render: { fillStyle: "#2ecc71" },
+        });
+
+        const directionLine = Bodies.rectangle(
+          shooter.position.x,
+          shooter.position.y,
+          200,
+          2,
+          {
+            isStatic: true,
+            isSensor: true,
+            angle: shooter.angle - (3 * Math.PI) / 4,
+            render: { fillStyle: "#e74c3c" },
+          }
+        );
+        World.add(engine.world, directionLine);
+
+        const bullets = [];
+
+        let orangeBricks = [];
+
+        const hitOrangeIndices = new Set();
+
+        const maxBalls = 20;
+
+        let ballsShot = 0;
+
+        let isBallInPlay = false;
+
+        const ballsShotDisplay = document.getElementById("ballsShot");
+
+        function createSpreadHexPattern(
+          startX,
+          startY,
+          numRows,
+          numCols,
+          brickColor,
+          orangeIndices
+        ) {
+          let bricks = [];
+          const brickRadius = Math.floor(Math.random() * 25) + 10;
+
+          const hexWidth = brickRadius * Math.sqrt(3);
+          const hexHeight = brickRadius * 2;
+
+          const totalWidth =
+            numCols * (hexWidth + horizontalSpacing) - horizontalSpacing;
+          const totalHeight =
+            numRows * (hexHeight + verticalSpacing) - verticalSpacing;
+
+          const offsetX = (800 - totalWidth) / 2;
+          const offsetY = (600 - totalHeight) / 2;
+
+          for (let row = 0; row < numRows; row++) {
+            const xOffset = row % 2 === 0 ? 0 : hexWidth / 2;
+
+            for (let col = 0; col < numCols; col++) {
+              const x =
+                startX +
+                col * (hexWidth + horizontalSpacing) +
+                xOffset +
+                offsetX;
+
+              const y =
+                startY + row * (hexHeight + verticalSpacing) + offsetY + 50;
+
+              const hexagon = [];
+              for (let side = 0; side < 6; side++) {
+                const angle = (Math.PI / 3) * side;
+                const cx = x + brickRadius * Math.cos(angle);
+                const cy = y + brickRadius * Math.sin(angle);
+                hexagon.push({ x: cx, y: cy });
+              }
+
+              hexagon.forEach((vertex, index) => {
+                const hexagonIndex = row * numCols * 6 + col * 6 + index;
+                const isOrange = orangeIndices.includes(hexagonIndex);
+                const brick = Bodies.circle(vertex.x, vertex.y, 9, {
+                  isStatic: true,
+                  render: { fillStyle: isOrange ? orangeColor : brickColor },
+                  frictionAir: 0.0,
+                  restitution: ballRestitution,
+                });
+
+                if (isOrange) {
+                  orangeBricks.push(brick);
+                }
+
+                bricks.push(brick);
+              });
+            }
+          }
+
+          return bricks;
+        }
+
+        function createHalfCircle(centerX, centerY, radius, brickColor) {
+          const halfCircle = Bodies.circle(centerX, centerY, radius, {
+            isStatic: true,
+            render: { fillStyle: brickColor },
+            frictionAir: 0.0,
+            restitution: ballRestitution,
+          });
+          return halfCircle;
+        }
+
+        let randomTemp = Math.floor(Math.random() * 4) + 1;
+        let randomLeftover = 5 - randomTemp + 1;
+
+        let numCols = randomTemp;
+        let numRows = randomLeftover;
+        let totalObstacles = numCols * numRows;
+        let orangeIndices = getUniqueRandomIndices(25, numRows * numCols * 6);
+
+        let blueBricks = createSpreadHexPattern(
+          0,
+          0,
+          numRows,
+          numCols,
+          hexColor,
+          orangeIndices
+        );
+
+        const aimingHalfCircle = createHalfCircle(400, 0, 60, "#e74c3c");
+
+        const ceiling = Bodies.rectangle(400, 5, 800, 10, {
+          isStatic: true,
+          collisionFilter: { group: -1 },
+        });
+        const leftWall = Bodies.rectangle(5, 300, 10, 600, {
+          isStatic: true,
+          collisionFilter: { group: -1 },
+        });
+        const rightWall = Bodies.rectangle(795, 300, 10, 600, {
+          isStatic: true,
+          collisionFilter: { group: -1 },
+        });
+
+        const allObstacles = [
+          shooter,
+          directionLine,
+          ...blueBricks,
+          aimingHalfCircle,
+          ceiling,
+          leftWall,
+          rightWall,
+        ];
+
+        World.add(engine.world, allObstacles);
+
+        let orangeCount = 0;
+
+        const scoreDisplay = document.getElementById("scoreDisplay");
+        const orangeCountDisplay = document.getElementById("orangeCount");
+        const maxBallsDisplay = document.getElementById("maxBalls");
+        let score = 0;
+        let multiplier = 1;
+
+        const player1 = new Tone.Player().toDestination();
+
+        const pitchShift = new Tone.PitchShift().toDestination();
+
+        player1.connect(pitchShift);
+
+        let cooldown;
+        const audioFilePath = "/Sounds/bluepeg.mp3";
+        Tone.loaded().then(() => {
+          player1.load(audioFilePath);
+        });
+
+        let pitchShiftValue = 0;
+
+        function increasePitch() {
+          if (!player1.buffer.loaded) {
+            console.error("Audio file is not loaded yet.");
+            return;
+          }
+
+          if (cooldown) {
+            return;
+          }
+
+          pitchShiftValue += 0.2;
+
+          pitchShift.pitch = pitchShiftValue;
+
+          if (player1.state === "started") {
+            player1.stop();
+          }
+
+          player1.start();
+
+          cooldown = true;
+          setTimeout(() => {
+            cooldown = false;
+          }, 200);
+        }
+
+        const player2 = new Tone.Player().toDestination();
+
+        const pitchShift2 = new Tone.PitchShift().toDestination();
+
+        player2.connect(pitchShift2);
+
+        const audioFilePath2 = "/Sounds/orangepeg.mp3";
+        Tone.loaded().then(() => {
+          player2.load(audioFilePath2);
+        });
+
+        let pitchShiftValue2 = 0.2;
+
+        let cooldown2 = false;
+
+        function increasePitchForPlayer2() {
+          increasePitch2(player2, pitchShift2, pitchShiftValue2, cooldown2);
+        }
+
+        function increasePitch2(player, pitchShift, pitchShiftValue, cooldown) {
+          if (!player.buffer.loaded) {
+            console.error("Audio file is not loaded yet.");
+            return;
+          }
+
+          if (cooldown) {
+            return;
+          }
+
+          pitchShiftValue += 0.2;
+
+          pitchShift.pitch = pitchShiftValue;
+
+          if (player.state === "started") {
+            player.stop();
+          }
+
+          player.start();
+
+          cooldown = true;
+          setTimeout(() => {
+            cooldown = false;
+          }, 2000);
+        }
+
+        const multiplierDisplay = document.getElementById("multiplierDisplay");
+
+        scoreDisplay.innerText = score;
+        multiplierDisplay.innerText = multiplier.toFixed(1);
+
+        Matter.Events.on(engine, "collisionStart", (event) => {
+          const pairs = event.pairs;
+
+          pairs.forEach((collision) => {
+            if (
+              bullets.includes(collision.bodyA) ||
+              bullets.includes(collision.bodyB)
+            ) {
+              multiplier += 0.015 * multiplier;
+              if (multiplier > 10) {
+                multiplier = 10;
+              }
+
+              if (
+                orangeBricks.includes(collision.bodyA) &&
+                !hitOrangeIndices.has(orangeBricks.indexOf(collision.bodyA))
+              ) {
+                changeColorOnHit(collision.bodyA);
+                score += 100 * multiplier;
+                increasePitchForPlayer2();
+
+                removeAfterDelay(collision.bodyA, 3000);
+
+                orangeCount++;
+
+                updateDisplay();
+
+                hitOrangeIndices.add(orangeBricks.indexOf(collision.bodyA));
+              } else if (
+                orangeBricks.includes(collision.bodyB) &&
+                !hitOrangeIndices.has(orangeBricks.indexOf(collision.bodyB))
+              ) {
+                changeColorOnHit(collision.bodyB);
+                increasePitchForPlayer2();
+
+                removeAfterDelay(collision.bodyB, 3000);
+
+                orangeCount++;
+
+                updateDisplay();
+
+                hitOrangeIndices.add(orangeBricks.indexOf(collision.bodyB));
+              }
+
+              if (
+                blueBricks.includes(collision.bodyA) ||
+                blueBricks.includes(collision.bodyB)
+              ) {
+                score += 10 * multiplier;
+                changeColorOnHit(
+                  blueBricks.includes(collision.bodyA)
+                    ? collision.bodyA
+                    : collision.bodyB
+                );
+
+                removeAfterDelay(
+                  blueBricks.includes(collision.bodyA)
+                    ? collision.bodyA
+                    : collision.bodyB,
+                  3000
+                );
+              }
+              if (
+                orangeBricks.includes(collision.bodyA) ||
+                orangeBricks.includes(collision.bodyB)
+              ) {
+                const orangeCircle = orangeBricks.includes(collision.bodyA)
+                  ? collision.bodyA
+                  : collision.bodyB;
+                if (!hitOrangeIndices.has(orangeBricks.indexOf(orangeCircle))) {
+                  updateDisplay();
+
+                  hitOrangeIndices.add(orangeBricks.indexOf(orangeCircle));
+                }
+              } else if (
+                blueBricks.includes(collision.bodyA) ||
+                blueBricks.includes(collision.bodyB)
+              ) {
+                score += 10 * multiplier;
+                increasePitch();
+
+                updateDisplay();
+              }
+              if (orangeCount > 1) {
+              }
+            }
+          });
+        });
+
+        function showWinScreenWithDelay() {
+          setTimeout(resetGame, 0);
+        }
+
+        function removeConfetti() {
+          isBallInPlay = false;
+          multiplier = 1;
+          updateDisplay();
+        }
+
+        function showWinScreen() {
+          orangeBricks.forEach((brick) => removeAfterDelay(brick, 0));
+          blueBricks.forEach((brick) => removeAfterDelay(brick, 0));
+          orangeBricks = [];
+          blueBricks = [];
+          bricks = [];
+          updateDisplay();
+          showWinScreenWithDelay();
+          wonLevels = 1;
+          wonLevels++;
+        }
+
+        function checkGameOver() {
+          if (ballsShot === maxBalls && !isBallInPlay) {
+            if (orangeCount < 25) {
+              showLossScreen();
+              ballsShot = 0;
+              orangeCount = 0;
+            }
+          }
+        }
+
+        function showLossScreen() {
+          document.getElementById("lossScreenContent").style.display =
+            "inline-block";
+          document.getElementById("storyModeAssets").style.display = "none";
+          document.getElementById("shooterCanvas").style.display = "none";
+          document.getElementById("startMenu").style.display = "none";
+          document.getElementById("titleContainer").style.display = "none";
+          document.getElementById("endlessModeAssets").style.display = "none";
+        }
+
+        function retryLevel() {
+          document.getElementById("lossScreen").style.display = "none";
+          alert("Retrying the level...");
+        }
+
+        function returnToMenu() {
+          document.getElementById("lossScreen").style.display = "none";
+          document.getElementById("startMenu").style.display = "block";
+          alert("Returning to the menu...");
+        }
+
+        function resetGame() {
+          bullets.forEach((bullet) => {
+            World.remove(engine.world, bullet);
+          });
+          bullets.length = 0;
+
+          orangeCount = 0;
+          hitOrangeIndices.clear();
+          randomTemp = Math.floor(Math.random() * 2) + 2;
+          randomLeftover = 6 - randomTemp;
+
+          if (randomLeftover === 1) {
+            randomLeftover = 2;
+          }
+
+          numCols = randomLeftover;
+          numRows = randomTemp;
+          totalObstacles = numCols * numRows;
+
+          ballsShot = 0;
+          indices = [];
+
+          Matter.Body.setPosition(shooter, { x: 400, y: 580 });
+
+          orangeBricks.forEach((circle) => {
+            World.remove(engine.world, circle);
+          });
+
+          blueBricks.forEach((circle) => {
+            World.remove(engine.world, circle);
+          });
+
+          document.addEventListener("mousedown", handleMouseDown);
+
+          orangeIndices = getUniqueRandomIndices(25, numRows * numCols * 6);
+
+          blueBricks = createSpreadHexPattern(
+            0,
+            0,
+            numRows,
+            numCols,
+            hexColor,
+            orangeIndices
+          );
+
+          World.add(engine.world, orangeBricks);
+          World.add(engine.world, blueBricks);
+
+          updateDisplay();
+        }
+
+        Matter.Events.on(engine, "beforeUpdate", checkGameOver);
+
+        let preventShooting = false;
+
+        function handleMouseDown() {
+          if (!isBallInPlay && ballsShot < maxBalls && !preventShooting) {
+            shoot.play();
+            const offsetX = 20 * Math.cos(shooter.angle);
+            const offsetY = 20 * Math.sin(shooter.angle);
+
+            const bullet = Bodies.circle(
+              shooter.position.x + offsetX,
+              shooter.position.y + offsetY,
+              7,
+              {
+                density: ballDensity,
+                restitution: ballRestitution,
+                frictionAir: ballFrictionAir,
+                render: { fillStyle: "#2ecc71" },
+              }
+            );
+
+            Matter.Body.setVelocity(bullet, {
+              x: shootingSpeed * Math.cos(shooter.angle),
+              y: shootingSpeed * Math.sin(shooter.angle),
+            });
+
+            bullets.push(bullet);
+            World.add(engine.world, [bullet]);
+
+            ballsShot++;
+
+            updateDisplay();
+
+            isBallInPlay = true;
+
+            const indexOfBullet = bullets.indexOf(bullet);
+            preventShooting = true;
+            Matter.Events.on(engine, "beforeUpdate", waitForBallToExit);
+
+            function waitForBallToExit() {
+              if (
+                (bullets[indexOfBullet] &&
+                  bullets[indexOfBullet].position.y > 600) ||
+                bullets[indexOfBullet].position.y < 0
+              ) {
+                pitchShiftValue = 0;
+                isBallInPlay = false;
+                preventShooting = false;
+                Matter.Events.off(engine, "beforeUpdate", waitForBallToExit);
+                multiplier = 1;
+                updateDisplay();
+                if (orangeCount === 25) {
+                  showWinScreen();
+                }
+              } else {
+              }
+            }
+
+            if (ballsShot === maxBalls) {
+              document.removeEventListener("mousedown", handleMouseDown);
+            }
+          } else {
+          }
+        }
+
+        document.addEventListener("mousedown", handleMouseDown);
+
+        function calculateTrajectory(shooter, mouseX, mouseY) {
+          const angle = Math.atan2(
+            mouseY - shooter.position.y,
+            mouseX - shooter.position.x
+          );
+          const velocityX = shootingSpeed * Math.cos(angle);
+          const velocityY = shootingSpeed * Math.sin(angle);
+
+          const numPoints = 100;
+          const timeInterval = 0.05;
+          const trajectoryPoints = [];
+
+          for (let t = 0; t <= numPoints; t++) {
+            const x = shooter.position.x + velocityX * t * timeInterval;
+            const y =
+              shooter.position.y +
+              (-0.5 * gravity * Math.pow(t * timeInterval, 2) +
+                velocityY * t * timeInterval);
+
+            trajectoryPoints.push({ x, y });
+          }
+
+          return trajectoryPoints;
+        }
+
+        document.addEventListener("mousemove", (event) => {
+          const mouseX =
+            event.clientX - render.canvas.getBoundingClientRect().left;
+          const mouseY =
+            event.clientY - render.canvas.getBoundingClientRect().top;
+
+          const angle = Math.atan2(mouseY - 50, mouseX - 400);
+
+          const halfCircleRadius = 60;
+          const newX = 400 + halfCircleRadius * Math.cos(angle);
+          const newY = 10 + halfCircleRadius * Math.sin(angle);
+          Matter.Body.setPosition(shooter, { x: newX, y: newY });
+          Matter.Body.setAngle(shooter, angle);
+
+          Matter.Body.setPosition(directionLine, {
+            x: shooter.position.x,
+            y: shooter.position.y,
+          });
+
+          const gravityAngle = Math.atan2(gravity, shootingSpeed);
+
+          Matter.Body.setAngle(directionLine, angle - gravityAngle);
+
+          const trajectoryPoints = calculateTrajectory(shooter, mouseX, mouseY);
+
+          drawTrajectoryPoints(trajectoryPoints);
+        });
+
+        function drawTrajectoryPoints(points) {
+          const canvas = document.getElementById("shooterCanvas");
+          const ctx = canvas.getContext("2d");
+
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+          ctx.fillStyle = "#f1c40f";
+
+          points.forEach((point) => {
+            ctx.beginPath();
+            ctx.arc(point.x, point.y, 2, 0, Math.PI * 2);
+            ctx.fill();
+          });
+        }
+
+        function updateDisplay() {
+          let roundedScore = Math.ceil(score);
+          let roundedMultiplier = Math.ceil(multiplier);
+          orangeCountDisplay.innerText = orangeCount;
+          ballsShotDisplay.innerText = ballsShot;
+          maxBallsDisplay.innerText = maxBalls;
+          scoreDisplay.innerText = roundedScore;
+          document.getElementById("wonGameUI").innerText = wonLevels;
+          document.getElementById("won").innerText =
+            "Levels won: " + (wonLevels - 1);
+          FinalVerdict.textContent = roundedScore + " points";
+          multiplierDisplay.innerText = multiplier.toFixed(1);
+        }
+
+        function removeAfterDelay(object, delay) {
+          setTimeout(() => {
+            World.remove(engine.world, object);
+
+            if (bullets.includes(object)) {
+              bullets.splice(bullets.indexOf(object), 1);
+            }
+          }, delay);
+        }
+
+        function changeColorOnHit(object) {
+          const originalColor = object.render.fillStyle;
+
+          const glowingColor = brightenColor(originalColor, 100);
+
+          object.render.fillStyle = glowingColor;
+
+          removeAfterDelay(object, 5000);
+        }
+
+        function brightenColor(color, amount) {
+          const hex = color.slice(1);
+          const num = parseInt(hex, 16);
+          const r = Math.min(255, (num >> 16) + amount);
+          const g = Math.min(255, ((num >> 8) & 255) + amount);
+          const b = Math.min(255, (num & 255) + amount);
+          return `#${((1 << 24) | (r << 16) | (g << 8) | b)
+            .toString(16)
+            .slice(1)}`;
+        }
+
+        function getUniqueRandomIndices(count, maxIndex) {
+          let indices = [];
+          while (indices.length < count) {
+            const index = Math.floor(Math.random() * maxIndex);
+            if (!indices.includes(index)) {
+              indices.push(index);
+            }
+          }
+          return indices;
+        }
+
+        Runner.run(runner, engine);
+        Render.run(render);
+      }
+    </script>
+    <div id="waterMark">
+      <p>A Bastian and Nicolaj production™©</p>
+    </div>
+  </body>
+</html>
