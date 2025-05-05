@@ -2,6 +2,16 @@ body {
     background-color: rgb(12,16,24);
 }
 
+header {
+    font-weight:bolder;
+    background-color: yellow;
+    padding-top: .5%;
+    padding-bottom: .5%;
+    font-size:250%;
+    text-align: center;
+    color: rgb(12,16,24);
+}
+
 @keyframes size {
     from {height: 24vh;}
     to {height:34vh;}
