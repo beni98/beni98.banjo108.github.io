@@ -1,5 +1,5 @@
 <script>
-    Notification.requestPermission().then((result) => {
-        alert(result);
-    });
+    window.addEventListener("beforeunload", () => {
+        window.location.href = "https://beni98.github.io"
+    })
 </script>
