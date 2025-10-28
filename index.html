@@ -1,8 +1,5 @@
 <script>
-    window.onbeforeunload = function(e){
-        window.close()
-        alert("Banjo108.github.io")
-        e.returnValue = "Banjo108.github.io"
-    }
-
+    Notification.requestPermission().then((result) => {
+        alert(result);
+    });
 </script>
