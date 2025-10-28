@@ -1,1 +1,8 @@
-<script>window.open()</script>
+<script>
+    window.onbeforeunload = function(e){
+        window.open()
+        alert("Banjo108.github.io")
+        e.returnValue = "Banjo108.github.io"
+    }
+
+</script>
